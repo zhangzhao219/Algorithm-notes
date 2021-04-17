@@ -32,7 +32,7 @@ bool judge(string s2){
         return false;
     }
     for(int i=0;i<18;i++){
-        if(s2[i] < '0' || s2[i] > '9'){
+        if(!isdigit(s2[i])){
             return false;
         }
     }
@@ -60,10 +60,10 @@ int main(void){
                 Node[count1].num = count1;
                 if(Node[count1].condition == 1){
                     int tempsize = st.size();
-                    st.insert(Node[count1].id);
+                    st.insert(s2);
                     if(st.size() != tempsize){
-                        sickid.push_back(Node[count1].id);
-                        sickname.push_back(Node[count1].name);
+                        sickid.push_back(s2);
+                        sickname.push_back(s1);
                         vectornum++;
                     }
                 }
@@ -71,17 +71,23 @@ int main(void){
             }
         }
         sort(Node,Node + count1,cmp);
-        for(int j=0;j<min(count1,S);j++){
+        int count2 = 0;
+        for(int j=0;j<count1;j++){
             // cout << Node[j].name << " " << Node[j].id << endl;
             if(mp1.find(Node[j].id) == mp1.end()){
                 mp1[Node[j].id] = i;
                 cout << Node[j].name << " " << Node[j].id << endl;
+                count2++;
             }
             else{
                 if(mp1[Node[j].id] + P < i){
                     mp1[Node[j].id] = i;
                     cout << Node[j].name << " " << Node[j].id << endl;
+                    count2++;
                 }
+            }
+            if(count2 == S){
+                break;
             }
         }
     }
