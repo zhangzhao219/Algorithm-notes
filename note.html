@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&#x7B97;&#x6CD5;&#x7B14;&#x8BB0;&#x603B;&#x7ED3;</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="算法笔记总结">算法笔记总结</h1>
+<h2 id="cc快速入门">C/C++快速入门</h2>
+<hr>
+<h3 id="1-数的范围">1. 数的范围</h3>
+<table>
+<thead>
+<tr>
+<th>标识符</th>
+<th>实际范围</th>
+<th>实用范围</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mn>31</mn></msup></mrow><annotation encoding="application/x-tex">-2^{31}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span> ~ <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>31</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{31} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></br><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>2147483648</mn></mrow><annotation encoding="application/x-tex">-2147483648</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">2</span><span class="mord">1</span><span class="mord">4</span><span class="mord">7</span><span class="mord">4</span><span class="mord">8</span><span class="mord">3</span><span class="mord">6</span><span class="mord">4</span><span class="mord">8</span></span></span></span> ~ <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2147483647</mn></mrow><annotation encoding="application/x-tex">2147483647</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">1</span><span class="mord">4</span><span class="mord">7</span><span class="mord">4</span><span class="mord">8</span><span class="mord">3</span><span class="mord">6</span><span class="mord">4</span><span class="mord">7</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">-2 \times 10^{9}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span></span> ~ <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">2 \times 10^{9}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span></span></td>
+<td>绝对值在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">10^{9}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span></span> 范围内的数都可以定义为 <code>int</code> 型</td>
+</tr>
+<tr>
+<td><code>long long</code></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mn>63</mn></msup></mrow><annotation encoding="application/x-tex">-2^{63}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">6</span><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span> ~ <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>63</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{63} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">6</span><span class="mord mtight">3</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>9</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>18</mn></msup></mrow><annotation encoding="application/x-tex">-9 \times 10^{18}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">9</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span></span> ~ <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>18</mn></msup></mrow><annotation encoding="application/x-tex">9 \times 10^{18}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">9</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span></span></td>
+<td><code>long long</code> 赋大于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>31</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{31} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的初值，需要在初值后面加上 <code>LL</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span> ~ <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn></mrow><annotation encoding="application/x-tex">7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span></span></span></span> 位</td>
+<td>尽量不用，四位数乘四位数都不准</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td></td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>15</mn></mrow><annotation encoding="application/x-tex">15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span></span></span></span> ~ <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn></mrow><annotation encoding="application/x-tex">16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">6</span></span></span></span> 位</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> bignum = <span class="hljs-number">123456789012345L</span>L;
+</div></code></pre>
+<hr>
+<table>
+<thead>
+<tr>
+<th>无穷大的数</th>
+<th>十六进制的形式</th>
+<th>十进制的形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>30</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{30} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></br>（避免相加超过<code>int</code>的情况）</td>
+<td><code>0x3fffffff</code></td>
+<td><code>1000000000</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="2-常用-math-函数">2. 常用 <code>math</code> 函数</h3>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>作用</th>
+<th>返回值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fabs(double x)</code></td>
+<td>对 <code>double</code> 型变量 <code>x</code> 取绝对值</td>
+<td>返回 <code>double</code> 型变量</td>
+<td></td>
+</tr>
+<tr>
+<td><code>floor(double x)</code></td>
+<td>对 <code>double</code> 型变量 <code>x</code> 向下取整</td>
+<td>返回 <code>double</code> 型变量</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ceil(double x)</code></td>
+<td>对 <code>double</code> 型变量 <code>x</code> 向上取整</td>
+<td>返回 <code>double</code> 型变量</td>
+<td></td>
+</tr>
+<tr>
+<td><code>pow(double r,double p)</code></td>
+<td>对 <code>double</code> 型变量 <code>r</code> 和 <code>p</code> 计算 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi><mi>p</mi></msup></mrow><annotation encoding="application/x-tex">r^p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span></span></span></span></span></span></span></span></td>
+<td>返回 <code>double</code> 型变量</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sqrt(double x)</code></td>
+<td>对 <code>double</code> 型变量 <code>x</code> 计算算数平方根</td>
+<td>返回 <code>double</code> 型变量</td>
+<td></td>
+</tr>
+<tr>
+<td><code>log(double x)</code></td>
+<td>对 <code>double</code> 型变量 <code>x</code> 取以自然对数为底的对数</td>
+<td>返回 <code>double</code> 型变量</td>
+<td>不能对任意底数求对数</td>
+</tr>
+<tr>
+<td><code>round(double x)</code></td>
+<td>对 <code>double</code> 型变量 <code>x</code> 进行四舍五入</td>
+<td>返回 <code>double</code> 型变量</td>
+<td>需进行取整才能用</br> <code>(int)x</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="3-sscanf-与-sprintf-函数">3. <code>sscanf</code> 与 <code>sprintf</code> 函数</h3>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>实际</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scanf(&quot;%d&quot;,&amp;a)</code></td>
+<td><code>scanf(screen,&quot;%d&quot;,&amp;a)</code></td>
+<td>把 <code>screen</code> 的内容以  <code>%d</code> 的形式传输至 <code>a</code> 中</td>
+</tr>
+<tr>
+<td><code>printf(&quot;%d&quot;,a)</code></td>
+<td><code>printf(screen,&quot;%d&quot;,a)</code></td>
+<td>把 <code>a</code> 的内容以  <code>%d</code> 的形式传输至 <code>screen</code> 中</td>
+</tr>
+<tr>
+<td><code>sscanf(str,&quot;%d&quot;,&amp;a)</code></td>
+<td></td>
+<td>把 <code>str</code> 的内容以  <code>%d</code> 的形式传输至 <code>a</code> 中</td>
+</tr>
+<tr>
+<td><code>sprintf(str,&quot;%d&quot;,a)</code></td>
+<td></td>
+<td>把 <code>a</code> 的内容以  <code>%d</code> 的形式传输至 <code>str</code> 中</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><code>sscanf</code> 示例：</p>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">int</span> n;
+<span class="hljs-keyword">char</span> str[<span class="hljs-number">5</span>] = <span class="hljs-string">&quot;123&quot;</span>;
+<span class="hljs-built_in">sscanf</span>(str,<span class="hljs-string">&quot;%d&quot;</span>,&amp;n); <span class="hljs-comment">// 将str以%d的形式写到n中</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,n);
+<span class="hljs-comment">// 123</span>
+
+<span class="hljs-keyword">int</span> n;
+<span class="hljs-keyword">double</span> db;
+<span class="hljs-keyword">char</span> str2[<span class="hljs-number">100</span>];
+
+<span class="hljs-keyword">char</span> str[<span class="hljs-number">100</span>] = <span class="hljs-string">&quot;2048:3.14,hello&quot;</span>;
+<span class="hljs-built_in">sscanf</span>(str,<span class="hljs-string">&quot;%d:%lf,%s&quot;</span>,&amp;n,&amp;db,str2);
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d:%lf,%s&quot;</span>,n,db,str2);
+<span class="hljs-comment">// 2048:3.140000,hello</span>
+</div></code></pre>
+<p><code>sprintf</code> 示例：</p>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">int</span> n = <span class="hljs-number">233</span>;
+<span class="hljs-keyword">char</span> str[<span class="hljs-number">5</span>];
+<span class="hljs-built_in">sprintf</span>(str,<span class="hljs-string">&quot;%d&quot;</span>,n); <span class="hljs-comment">// 将n以%d的形式写到str中</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>,str);
+<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+<span class="hljs-comment">// 233</span>
+
+<span class="hljs-keyword">int</span> n = <span class="hljs-number">2048</span>;
+<span class="hljs-keyword">double</span> db = <span class="hljs-number">3.14</span>;
+<span class="hljs-keyword">char</span> str2[<span class="hljs-number">100</span>] = <span class="hljs-string">&quot;hello&quot;</span>;
+
+<span class="hljs-keyword">char</span> str[<span class="hljs-number">100</span>];
+<span class="hljs-built_in">sprintf</span>(str,<span class="hljs-string">&quot;%d:%lf,%s&quot;</span>,n,db,str2);
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>,str);
+<span class="hljs-comment">// 2048:3.140000,hello</span>
+</div></code></pre>
+
+    </body>
+    </html>
