@@ -691,18 +691,23 @@ struct node{
     vector<int> child;
 }Node[100000];
 int index = 0;
+
 // 定义新结点
 int newNode(int v){
     Node[index].data= v;
     Node[index].child.clear();
     return index++;
 }
+
+// 树的先根遍历
 void preOrder(int root){
     printf("%d ",Node[root].data);
     for(int i=0;i<Node[root].child.size();i++){
         preOrder(Node[root].child[i]);
     }
 }
+
+// 树的层序遍历
 void layerOrder(int root){
     queue<int> q;
     q.push(root);
@@ -716,6 +721,90 @@ void layerOrder(int root){
             Node[child].layer = Node[now].layer + 1;
             q.push(child);
         }
+    }
+}
+```
+
+---
+
+## 3. 二叉查找树
+
+```cpp
+struct node{
+    int data;
+    node* lchild;
+    node* rchild;
+};
+void search(node* root,int x){
+    if(root == NULL){
+        printf("Failed!");
+    }
+    if(root->data== x){
+        printf("OK");
+    }
+    else if(root->data < x){
+        search(root->rchild,x);
+    }
+    else{
+        search(root->lchild,x);
+    }
+    return;
+
+}
+void insert(node* &root,int x){
+    if(root == NULL){
+        root = new node;
+        root->lchild = NULL;
+        root->rchild = NULL;
+        root->data = x;
+        return;
+    }
+    if(root->data == x){
+        return;
+    }
+    else if(x < root->data){
+        insert(root->lchild,x);
+    }
+    else{
+        insert(root->rchild,x);
+    }
+}
+node* findmax(node* root){
+    while(root->rchild != NULL){
+        root = root->rchild;
+    }
+    return root;
+}
+node* findmin(node* root){
+    while(root->lchild != NULL){
+        root = root->lchild;
+    }
+    return root;
+}
+void deletenode(node* &root,int x){
+    if(root == NULL){
+        return;
+    }
+    if(root->data == x){
+        if(root->lchild == NULL && root->rchild == NULL){
+            root = NULL;
+        }
+        else if(root->lchild != NULL){
+            node* pre = findmax(root->lchild);
+            root->data = pre->data;
+            deletenode(root->lchild,pre->data);
+        }
+        else{
+            node* pre = findmin(root->rchild);
+            root->data = pre->data;
+            deletenode(root->rchild,pre->data);
+        }
+    }
+    else if(x < root->data){
+        deletenode(root->lchild,x);
+    }
+    else{
+        deletenode(root->rchild,x);
     }
 }
 ```
