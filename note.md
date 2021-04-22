@@ -682,7 +682,7 @@ Node* Createtree(int postL,int postR,int inL,int inR){
 
 ---
 
-## 2. 树
+### 2. 树
 ```cpp
 // 树的存储结构
 struct node{
@@ -727,14 +727,17 @@ void layerOrder(int root){
 
 ---
 
-## 3. 二叉查找树
+### 3. 二叉查找树
 
 ```cpp
+// 存储结构
 struct node{
     int data;
     node* lchild;
     node* rchild;
 };
+
+// 搜索结点
 void search(node* root,int x){
     if(root == NULL){
         printf("Failed!");
@@ -749,8 +752,9 @@ void search(node* root,int x){
         search(root->lchild,x);
     }
     return;
-
 }
+
+// 插入结点
 void insert(node* &root,int x){
     if(root == NULL){
         root = new node;
@@ -769,18 +773,24 @@ void insert(node* &root,int x){
         insert(root->rchild,x);
     }
 }
+
+
 node* findmax(node* root){
     while(root->rchild != NULL){
         root = root->rchild;
     }
     return root;
 }
+
+
 node* findmin(node* root){
     while(root->lchild != NULL){
         root = root->lchild;
     }
     return root;
 }
+
+
 void deletenode(node* &root,int x){
     if(root == NULL){
         return;
@@ -806,5 +816,118 @@ void deletenode(node* &root,int x){
     else{
         deletenode(root->rchild,x);
     }
+}
+```
+
+---
+
+### 4. 并查集
+```cpp
+int father[10];
+
+int findfather(int x){
+    int a = x;
+    while(x != father[x]){
+        x = father[x];
+    }
+    while(a != father[a]){
+        int z = a;
+        a = father[a];
+        father[z] = x;
+    }
+    return x;
+}
+void Union(int a,int b){
+    int faA = findfather(a);
+    int faB = findfather(b);
+    if(faA != faB){
+        father[faA] = faB;
+    }
+}
+int main(void){
+    int N;
+    for(int i=1;i<=N;i++){
+        father[i] = i;
+    }
+}
+```
+
+---
+
+## 图
+
+### 1. 最短路径
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+const int maxv = 1000;
+const int inf = 1000000000;
+
+int n,G[maxv][maxv];
+int d[maxv];
+bool vis[maxv];
+
+void Dijkstra(int s){
+    memset(vis,false,sizeof(vis));
+    fill(d,d+maxv,inf);
+    for(int i=0;i<n;i++){
+        int u = -1,MIN = inf;
+        for(int j=0;j<n;j++){
+            if(vis[j] == false && d[j] < MIN){
+                u = j;
+                MIN = d[j];
+            }
+        }
+        if(u == -1){
+            return;
+        }
+        vis[u] = true;
+        for(int v=0;v<n;v++){
+            if(vis[v] == false && G[u][v] != inf && d[u] + G[u][v] < d[v]){
+                d[v] = d[u] + G[u][v];
+            }
+        }
+    }
+}
+
+
+struct Node{
+    int v,dis;
+};
+
+vector<Node> Adj[maxv];
+void Dijkstra2(int s){
+    memset(vis,false,sizeof(vis));
+    fill(d,d+maxv,inf);
+    for(int i=0;i<n;i++){
+        int u=-1,MIN=inf;
+        for(int j=0;j<n;j++){
+            if(vis[j] == false && d[j] < MIN){
+                u = j;
+                MIN = d[j];
+            }
+        }
+        if(u == -1){
+            return;
+        }
+        vis[u] = true;
+        for(int j=0;j<Adj[u].size();j++){
+            int v = Adj[u][j].v;
+            if(vis[v] == false && d[u] + Adj[u][j].dis < d[v]){
+                d[v] = d[u] + Adj[u][j].dis;
+            }
+        }
+    }
+}
+
+int pre[maxv];
+void DFS(int s,int v){
+    if(v == s){
+        printf("%d\n",s);
+        return;
+    }
+    DFS(s,pre[v]);
+    printf("%d\n",v);
 }
 ```
