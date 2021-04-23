@@ -1,24 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
-int Cmax,N,Sp,M;
-
-const int maxn = 510;
 const int INF = 1000000000;
-
-bool vis[maxn];
-int dis[maxn];
-int weight[maxn];
+const int maxn = 510;
+int Cmax,N,Sp,M;
 int G[maxn][maxn];
+bool vis[maxn];
+int d[maxn];
+int re[maxn];
 
 vector<int> pre[maxn];
-void Dijkstra(int s){
-    dis[s] = 0;
+void dijkstra(int s){
+    d[s] = 0;
     for(int i=0;i<N;i++){
         int u = -1,MIN = INF;
         for(int j=0;j<=N;j++){
-            if(vis[j] == false && dis[j] < MIN){
+            if(vis[j] == false && d[j] < MIN){
                 u = j;
-                MIN = dis[j];
+                MIN = d[j];
             }
         }
         if(u == -1){
@@ -27,12 +25,12 @@ void Dijkstra(int s){
         vis[u] = true;
         for(int v=0;v<=N;v++){
             if(vis[v] == false && G[u][v] != INF){
-                if(dis[v] > dis[u] + G[u][v]){
-                    dis[v] = dis[u] + G[u][v];
+                if(d[v] > d[u] + G[u][v]){
+                    d[v] = d[u] + G[u][v];
                     pre[v].clear();
                     pre[v].push_back(u);
                 }
-                else if(dis[v] == dis[u] + G[u][v]){
+                else if(d[v] == d[u] + G[u][v]){
                     pre[v].push_back(u);
                 }
             }
@@ -42,43 +40,43 @@ void Dijkstra(int s){
 
 vector<int> temppath;
 vector<int> path;
-int minneed = INF;
-int minremain = INF;
+int sendbikes = INF;
+int receivebikes = INF;
 
-void DFS(int s){
-    if(s == 0){
-        temppath.push_back(s);
-        int need = 0,remain = 0;
-        for(int i=temppath.size() - 1;i >= 0;i--){
-            int id = temppath[i];
-            if(weight[id] > 0){
-                remain += weight[id];
+void DFS(int end){
+    if(end == 0){
+        temppath.push_back(end);
+        int need = 0;
+        int remain = 0;
+        for(int i=temppath.size() - 1;i>=0;i--){
+            if(re[temppath[i]] > 0){
+                remain += re[temppath[i]];
             }
             else{
-                if(remain > abs(weight[id])){
-                    remain -= abs(weight[id]);
+                if(remain > abs(re[temppath[i]])){
+                    remain -= abs(re[temppath[i]]);
                 }
                 else{
-                    need = need + abs(weight[id]) - remain;
+                    need += abs(re[temppath[i]]) - remain;
                     remain = 0;
                 }
             }
         }
-        if(need < minneed){
-            minneed = need;
-            minremain = remain;
+        if(need < sendbikes){
+            receivebikes = remain;
+            sendbikes = need;
             path = temppath;
         }
-        else if(need == minneed && remain < minremain){
-            minremain = remain;
+        else if(need == sendbikes && remain < receivebikes){
+            receivebikes = remain;
             path = temppath;
         }
         temppath.pop_back();
         return;
     }
-    temppath.push_back(s);
-    for(int i=0;i<pre[s].size();i++){
-        DFS(pre[s][i]);
+    temppath.push_back(end);
+    for(int i=0;i<pre[end].size();i++){
+        DFS(pre[end][i]);
     }
     temppath.pop_back();
 }
@@ -87,12 +85,12 @@ int main(void){
     freopen("../test.in","r",stdin);
     scanf("%d %d %d %d",&Cmax,&N,&Sp,&M);
     memset(vis,false,sizeof(vis));
-    fill(dis,dis + maxn,INF);
     fill(G[0],G[0] + maxn * maxn,INF);
-    weight[0] = 0;
+    fill(d,d+maxn,INF);
+    re[0] = 0;
     for(int i=1;i<=N;i++){
-        scanf("%d",&weight[i]);
-        weight[i] -= Cmax / 2;
+        scanf("%d",&re[i]);
+        re[i] -= Cmax / 2;
     }
     int t1,t2;
     for(int i=0;i<M;i++){
@@ -100,15 +98,18 @@ int main(void){
         scanf("%d",&G[t1][t2]);
         G[t2][t1] = G[t1][t2];
     }
-    Dijkstra(0);
+    dijkstra(0);
     DFS(Sp);
-    printf("%d ",minneed);
-    for(int i=path.size() - 1;i>=0;i--){
+    printf("%d ",sendbikes);
+    for(int i=path.size()-1;i>=0;i--){
         printf("%d",path[i]);
         if(i != 0){
             printf("->");
         }
+        else{
+            printf(" ");
+        }
     }
-    printf(" %d\n",minremain);
+    printf("%d\n",receivebikes);
     return 0;
 }
