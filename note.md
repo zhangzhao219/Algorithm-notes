@@ -485,6 +485,115 @@ bign divide(bign a,int b,int &r){
 }
 ```
 
+### 8. 求质数，质因子分解
+
+Given any positive integer $N$, you are supposed to find all of its prime factors
+
+Sample Input:
+```
+97532468
+```
+
+Sample Output:
+```
+97532468=2^2*11*17*101*1291
+```
+
+Solution:
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const int maxn = 100010;
+
+int prime[100010];
+int pnum = 0;
+
+// 普通判断质数
+bool isPrime(int n){
+    if(n == 1){
+        return false;
+    }
+    for(int i=2;i<=(int)sqrt(1.0*n);i++){
+        if(n % i == 0){
+            return false;
+        }
+    }
+    return true;
+}
+void Find_Prime(){
+    for(int i=1;i<maxn;i++){
+        if(isPrime(i) == true){
+            prime[pnum++] = i;
+        }
+    }
+}
+
+// 埃氏筛法求质数表
+void Find_Prime(){
+    bool judge[100010];
+    memset(judge,false,sizeof(judge));
+    for(int i=2;i<=100010;i++){
+        if(judge[i] == false){
+            prime[pnum++] = i;
+            for(int j=i+i;j<=100010;j += i){
+                judge[j] = true;
+            }
+        }
+    }
+}
+
+// 存储质数的结构
+struct factor{
+    int x; // 分解出的质数
+    int cnt; // 分解出的质数次数
+}Factor[10];
+
+int main(void){
+    Find_Prime();
+    int n,num = 0;
+    scanf("%d",&n);
+    if(n == 1){
+        printf("1=1");
+    }
+    else{
+        printf("%d=",n);
+        int b = (int)sqrt(1.0*n);
+        for(int i=0;i<pnum && prime[i] <= b;i++){
+            if(n % prime[i] == 0){
+                Factor[num].x = prime[i];
+                Factor[num].cnt = 0;
+                while(n % prime[i] == 0){
+                    Factor[num].cnt++;
+                    n /= prime[i];
+                }
+                num++;
+            }
+            if(n == 1){
+                break;
+            }
+        }
+        if(n != 1){
+            Factor[num].x = n;
+            Factor[num++].cnt = 1;
+        }
+
+        for(int i=0;i<num;i++){
+            if(i != 0){
+                printf("*");
+            }
+            if(Factor[i].cnt == 1){
+                printf("%d",Factor[i].x);
+            }
+            else{
+                printf("%d^%d",Factor[i].x,Factor[i].cnt);
+            }
+        }
+    }
+    return 0;
+}
+```
+
 ---
 
 ## 链表
@@ -929,5 +1038,453 @@ void DFS(int s,int v){
     }
     DFS(s,pre[v]);
     printf("%d\n",v);
+}
+```
+
+## 线段树
+
+### 1. P3372 【模板】线段树 1
+
+**题目描述**
+
+已知一个数列，需要进行下面两种操作：
+
+1. 将某区间每一个数加上 $k$。
+2. 求出某区间每一个数的和。
+
+**输入格式**
+
+第一行包含两个整数 $n,m$，分别表示该数列数字的个数和操作的总个数。
+
+第二行包含 $n$ 个用空格分隔的整数，其中第 $i$ 个数字表示数列第 $i$ 项的初始值。
+
+接下来 $m$ 行每行包含 $3$ 或 $4$ 个整数，表示一个操作，具体如下：
+
+1.  $1\ x\  y\  k$：将区间 $[x,y]$ 内每个数加上 $k$。
+2.  $2\ x\ y$：输出区间 $[x,y]$ 内每个数的和。
+
+**输出格式**
+
+输出包含若干行整数，即为所有操作 $2$ 的结果。
+
+**输入**
+
+```
+5 5
+1 5 4 2 3
+2 2 4
+1 2 3 2
+2 3 4
+1 1 5 1
+2 1 4
+```
+
+**输出**
+
+```
+11
+8
+20
+```
+
+**解答**
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+const int maxn = 100010;
+
+// 线段树结构
+struct SegmentTree{
+    int l,r; // 区间的左右端点
+    long long sum,add; // sum存储求和结果，add懒标记
+}tree[4*maxn]; // 开四倍大小
+
+int w[maxn]; // 原始数据
+
+int n,m; // 题目给的总数和询问次数
+
+// 自底向上更新信息
+void update(int node){
+    // 结点的总和 = 左孩子的总和 + 右孩子的总和
+    tree[node].sum = tree[node * 2].sum + tree[node * 2 + 1].sum;
+}
+
+// 懒标记
+void lazy_tag(int node){
+    // 左孩子结点
+    int leftnode = node * 2;
+    // 右孩子结点
+    int rightnode = node * 2 + 1;
+    // 如果懒标记不为0
+    if(tree[node].add){
+        // 将懒标记传递给左孩子
+        tree[leftnode].add += tree[node].add;
+        // 左孩子的总和 = 左孩子的总和 + 传递下来的懒标记 * 左孩子的区间 （每一个都要加）
+        tree[leftnode].sum += (long long)(tree[leftnode].r - tree[leftnode].l + 1) * tree[node].add;
+        // 将懒标记传递给右孩子
+        tree[rightnode].add += tree[node].add;
+        // 右孩子的总和 = 右孩子的总和 + 传递下来的懒标记 * 右孩子的区间 （每一个都要加）
+        tree[rightnode].sum += (long long)(tree[rightnode].r - tree[rightnode].l + 1) * tree[node].add;
+        // 懒标记置为0
+        tree[node].add = 0;
+    }
+    return;
+}
+
+// 建立线段树
+void buildtree(int node,int start,int end){
+    // 结点信息的初始化
+    tree[node].l = start;
+    tree[node].r = end;
+    tree[node].add = 0;
+    // start == end 说明找到了叶子结点
+    if(start == end){
+        // 叶子结点的和是它本身
+        tree[node].sum = w[start];
+        return;
+    }
+    else{
+        int mid = (start + end) / 2;
+        // 递归建立左子树
+        buildtree(node * 2,start,mid);
+        // 递归建立右子树
+        buildtree(node * 2 + 1,mid+1,end);
+        // 更新信息
+        update(node);
+    }
+}
+
+//单点查询
+int ask_point(int node,int x){
+    // 找到了叶子结点，返回叶子结点的值
+    if(tree[node].l == tree[node].r){
+        return tree[node].sum;
+    }
+    // 将懒标记下传
+    lazy_tag(node);
+    int mid=(tree[node].l + tree[node].r) / 2;
+    // 向左孩子方向继续寻找
+    if(x <= mid){
+        ask_point(node * 2,x);
+    }
+    // 向右孩子方向继续寻找
+    else{
+        ask_point(node*2 + 1,x);
+    }
+}
+
+// 单点修改
+void change_point(int node,int x,int y){
+    // 找到了叶子结点，更改掉叶子结点的值
+    if(tree[node].l == tree[node].r){
+        tree[x].sum = y;
+        return;
+    }
+    // 将懒标记下传
+    lazy_tag(node);
+    int mid = (tree[node].l + tree[node].r) / 2;
+    if(x <= mid){
+        change_point(node * 2,x,y);
+    }
+    else{
+        change_point(node * 2 + 1,x,y);
+    }
+    // 自底向上更新信息
+    update(node);
+}
+
+// 区间查询
+long long ask_interval(int node,int start,int end){
+    // 完全被包含直接返回总和
+    if(tree[node].l >= start && tree[node].r <= end){
+        return tree[node].sum;
+    }
+    // 不被包含
+    else if(tree[node].r < start || tree[node].l > end){
+        return 0;
+    }
+    else{
+        // 更新懒标记
+        lazy_tag(node);
+        int mid = (tree[node].l + tree[node].r) / 2;
+        long long res = 0;
+        if(start <= mid){
+            res += ask_interval(node * 2,start,end);
+        }
+        if(end > mid){
+            res += ask_interval(node * 2 + 1,start,end);
+        }
+        return res;
+    }
+}
+
+// 区间更新
+void change_interval(int node,int start,int end,int val){
+    // 完全被包含
+    if(tree[node].l >= start && tree[node].r <= end){
+        // 更改懒标记
+        tree[node].add += val;
+        // 更新结点的总和 = 结点的区间 * 更新的值
+        tree[node].sum += (long long)(tree[node].r - tree[node].l + 1) * val;
+    }
+    // 不被包含
+    else if(tree[node].r < start || tree[node].l > end){
+        return;
+    }
+    // 不完全被包含
+    else{
+        lazy_tag(node); // 向下操作，先更新懒标记
+        int mid = (tree[node].l + tree[node].r) / 2;
+        // 操作左半边区间
+        if(start <= mid){
+            change_interval(node * 2,start,end,val);
+        }
+        // 操作右半边区间
+        if(end > mid){
+            change_interval(node * 2 + 1,start,end,val);
+        }
+        // 更新信息
+        update(node);
+    }
+}
+
+
+int main(void){
+    scanf("%d %d",&n,&m);
+    for(int i=1;i<=n;i++){
+        scanf("%d",&w[i]);
+    }
+    buildtree(1,1,n);
+    while(m--){
+        int kind,x,y,k;
+        scanf("%d",&kind);
+        if(kind == 1){
+            scanf("%d %d %d",&x,&y,&k);
+            change_interval(1,x,y,k);
+        }
+        else{
+            scanf("%d %d",&x,&y);
+            printf("%lld\n",ask_interval(1,x,y));
+        }
+    }
+    return 0;
+}
+```
+
+### 2. P3373 【模板】线段树 2
+
+**题目描述**
+
+已知一个数列，需要进行下面两种操作：
+
+1. 将某区间每一个数乘上 $x$
+2. 将某区间每一个数加上 $x$
+3. 求出某区间每一个数的和
+
+**输入格式**
+
+第一行包含三个整数 $n,m,p$，分别表示该数列数字的个数、操作的总个数和模数。
+
+第二行包含 $n$ 个用空格分隔的整数，其中第 $i$ 个数字表示数列第 $i$ 项的初始值。
+
+接下来 $m$ 行每行包含若干个整数，表示一个操作，具体如下：
+
+1.  $1\ x\  y\  k$：将区间 $[x,y]$ 内每个数乘上 $k$。
+2.  $2\ x\  y\  k$：将区间 $[x,y]$ 内每个数加上 $k$。
+3.  $3\ x\ y$：输出区间 $[x,y]$ 内每个数的和对 $p$ 取模所得的结果。
+
+**输出格式**
+
+输出包含若干行整数，即为所有操作 $3$ 的结果。
+
+**输入**
+
+```
+5 5 38
+1 5 4 2 3
+2 1 4 1
+3 2 5
+1 2 4 2
+2 3 5 5
+3 1 4
+```
+
+**输出**
+
+```
+17
+2
+```
+
+**解答**
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+const int maxn = 100010;
+
+struct SegmentTree{
+    int l,r;
+    long long v,add,mul; // v为结果，add存储和的懒标记，mul存储积的懒标记
+}tree[4*maxn];
+
+long long w[maxn];
+int n,m,p; // p是余数
+
+// 自底向上更新信息
+void update(int node){
+    tree[node].v = (tree[node * 2].v + tree[node * 2 + 1].v) % p;
+}
+
+// 懒标记
+void lazy_tag(int node){
+    int leftnode = node * 2;
+    int rightnode = node * 2 + 1;
+
+    int mid = (tree[node].l + tree[node].r) / 2;
+
+    // 更新结果
+    tree[leftnode].v = (tree[leftnode].v * tree[node].mul + tree[node].add * (mid - tree[node].l + 1)) % p;
+    tree[rightnode].v = (tree[rightnode].v * tree[node].mul + tree[node].add * (tree[node].r - mid)) % p;
+
+    // 更新积的懒标记
+    tree[leftnode].mul = (tree[leftnode].mul * tree[node].mul) % p;
+    tree[rightnode].mul = (tree[rightnode].mul * tree[node].mul) % p;
+
+    // 更新和的懒标记
+    tree[leftnode].add = (tree[leftnode].add * tree[node].mul + tree[node].add) % p;
+    tree[rightnode].add = (tree[rightnode].add * tree[node].mul + tree[node].add) % p;
+
+    // 懒标记初始化
+    tree[node].mul = 1;
+    tree[node].add = 0;
+
+    return;
+}
+
+// 建立线段树
+void buildtree(int node,int start,int end){
+    tree[node].l = start;
+    tree[node].r = end;
+    tree[node].add = 0;
+    tree[node].mul = 1;
+    if(start == end){
+        tree[node].v = w[start];
+        tree[node].v %= p;
+    }
+    else{
+        int mid = (start + end) / 2;
+        // 递归建立左子树
+        buildtree(node * 2,start,mid);
+        // 递归建立右子树
+        buildtree(node * 2 + 1,mid+1,end);
+        update(node);
+    }
+}
+
+// 区间查询
+long long ask_interval(int node,int start,int end){
+    if(tree[node].l >= start && tree[node].r <= end){
+        return tree[node].v % p;
+    }
+    else if(tree[node].r < start || tree[node].l > end){
+        return 0;
+    }
+    else{
+        lazy_tag(node);
+        int mid = (tree[node].l + tree[node].r) / 2;
+        long long res = 0;
+        if(start <= mid){
+            res += ask_interval(node * 2,start,end);
+        }
+        if(end > mid){
+            res += ask_interval(node * 2 + 1,start,end);
+        }
+        return res % p;
+    }
+}
+
+// 区间乘法修改
+void change_interval_mul(int node,int start,int end,long long val){
+    // 完全被包含
+    if(tree[node].l >= start && tree[node].r <= end){
+        tree[node].v = (tree[node].v * val) % p;
+        tree[node].mul = (tree[node].mul * val) % p;
+        tree[node].add = (tree[node].add * val) % p;
+        return;
+    }
+    // 不被包含
+    else if(tree[node].r < start || tree[node].l > end){
+        return;
+    }
+    // 不完全被包含
+    else{
+        lazy_tag(node); // 向下操作，先更新懒标记
+        int mid = (tree[node].l + tree[node].r) / 2;
+        // 操作左半边区间
+        if(start <= mid){
+            change_interval_mul(node * 2,start,end,val);
+        }
+        // 操作右半边区间
+        if(end > mid){
+            change_interval_mul(node * 2 + 1,start,end,val);
+        }
+        update(node);
+    }
+}
+
+// 区间加法修改
+void change_interval_add(int node,int start,int end,long long val){
+    // 完全被包含
+    if(tree[node].l >= start && tree[node].r <= end){
+        tree[node].v = (tree[node].v + (tree[node].r - tree[node].l + 1) * val) % p;
+        tree[node].add = (tree[node].add + val) % p;
+        return;
+    }
+    // 不被包含
+    else if(tree[node].r < start || tree[node].l > end){
+        return;
+    }
+    // 不完全被包含
+    else{
+        lazy_tag(node); // 向下操作，先更新懒标记
+        int mid = (tree[node].l + tree[node].r) / 2;
+        // 操作左半边区间
+        if(start <= mid){
+            change_interval_add(node * 2,start,end,val);
+        }
+        // 操作右半边区间
+        if(end > mid){
+            change_interval_add(node * 2 + 1,start,end,val);
+        }
+        update(node);
+    }
+}
+
+int main(void){
+    scanf("%d %d %d",&n,&m,&p);
+    for(int i=1;i<=n;i++){
+        scanf("%lld",&w[i]);
+    }
+    buildtree(1,1,n);
+    while(m--){
+        int kind,x,y;
+        long long k;
+        scanf("%d",&kind);
+        if(kind == 1){
+            scanf("%d %d %lld",&x,&y,&k);
+            change_interval_mul(1,x,y,k);
+        }
+        else if(kind == 2){
+            scanf("%d %d %lld",&x,&y,&k);
+            change_interval_add(1,x,y,k);
+        }
+        else{
+            scanf("%d %d",&x,&y);
+            printf("%lld\n",ask_interval(1,x,y));
+        }
+    }
+    return 0;
 }
 ```
