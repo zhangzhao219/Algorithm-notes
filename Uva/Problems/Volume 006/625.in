@@ -1,0 +1,22 @@
+1
+program Test;
+var n :integer;
+function harmonic(number :integer):real;
+var i :integer;
+Universidad de Valladolid OJ: 625 ¨C Compression
+2/2
+result :real;
+begin
+result := 0;
+for i := 1 to number do
+begin
+number := number + 1/i;
+end;
+harmonic := result;
+end;
+begin
+writeln('Get n:');
+readln(n);
+writeln('harmonic number for n: ');
+writeln(harmonic(n));
+end.

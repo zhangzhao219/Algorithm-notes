@@ -1,0 +1,10 @@
+drop the price on new thermopanes now or else
+Rain Users Guide
+While "rain" was intended to be a general purpose tool, at the time of
+writing the primary goal was to study one particular software system.
+As a result, some steps that are only done once (such as extracting
+information from the program under study) are done using cumbersome
+ad-hoc techniques that require significant manual intervention.
+While
+"rain" can be used on arbitrary programs, more development work needs
+to be done before this is a convenient process.

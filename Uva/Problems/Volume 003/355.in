@@ -1,0 +1,8 @@
+2 10 10101
+5 3 126
+15 11 A4C
+Sample output
+10101 base 2 = 21 base 10
+126 is an illegal base 5 number
+A4C base 15 = 1821 base 11
+

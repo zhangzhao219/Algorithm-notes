@@ -1,0 +1,27 @@
+AB+CD+EF++GH+++
+AB+CD+-
+Universidad de Valladolid OJ: 214 ¨C Code Generation
+2/2
+Sample output
+L A
+A B
+ST $1
+L C
+A D
+ST $2
+L E
+A F
+A $2
+ST $2
+L G
+A H
+A $2
+A $1
+L A
+A B
+ST $1
+L C
+A D
+N
+A $1
+

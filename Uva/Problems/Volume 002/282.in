@@ -1,0 +1,13 @@
+abFile001.c
+abFile001.cxx
+abprog001.c
+abfile.c
+abFile.c
+abFileprog.c
+end
+rename abFile*.c bprog*.cxx
+end
+acm.c
+end
+rename ac*.c ib*.cpp
+end

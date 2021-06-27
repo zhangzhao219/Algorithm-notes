@@ -1,0 +1,16 @@
+2
+4 2 3 6
+Same colour of item 0 = A B D
+Colour 2 for item 0 = B
+Not colour 2 for item 1 = C
+Not colour 1 for item 1 = C
+Same colour of item 1 = C D
+Same colour of item 1 = A D
+4 2 3 7
+Same colour of item 0 = A B D
+Colour 2 for item 0 = B
+Not colour 2 for item 1 = C
+Not colour 1 for item 1 = C
+Same colour of item 1 = C D
+Same colour of item 1 = A D
+Colour 1 for item 0 = D

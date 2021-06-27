@@ -1,0 +1,17 @@
+5 5
+house1 LOCATION A 0
+postoffice LOCATION A 4
+school DISTANCE 4 house1
+house2 DISTANCE 6 postoffice
+school DISTANCE 6 postoffice
+house3 DISTANCE 6 postoffice
+END
+2 3
+school LOCATION A 0
+house1 DISTANCE 1 school
+house2 DISTANCE 1 house1
+house3 DISTANCE 1 house2
+house4 DISTANCE 1 house3
+house5 DISTANCE 1 house4
+END
+0 0

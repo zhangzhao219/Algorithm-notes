@@ -1,0 +1,14 @@
+pwd
+cd acm
+mkdir ./acm
+ls ./acm
+cd acm
+pwd
+touch acm -h -1000
+cd ..
+cd /
+grep
+ls -r -s
+ls -r -h
+find acm -h -r | grep "1000"
+exit

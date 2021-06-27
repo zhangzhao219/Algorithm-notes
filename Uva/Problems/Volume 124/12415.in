@@ -1,0 +1,8 @@
+Hint
+This problem is hard. You need to know some theory behind regular expressions, not just how to
+use them. Please make sure your program can pass the test cases in the gift package in the contest
+website.
+6 1(2+3)*4
+012345
+2 00*(10+100)*
+00100

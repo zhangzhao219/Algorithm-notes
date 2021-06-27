@@ -1,0 +1,168 @@
+MAP 19 40
+0
+0
+5
+5
+0
+1
+1.1
+1
+0.6
+1.7
+0 UPV
+0 SPV
+35
+B01
+42
+B02
+33
+B03
+Universitat Politecnica de Valencia
+Contest hotel
+The Object
+Opera
+New York
+Universidad de Valladolid OJ: 12552 { The Moon of Valencia
+3/5
+2
+2.5
+2
+3.5
+4
+4.5
+3.5
+1.5
+4.5
+2.5
+3.6
+4
+2.5
+2.5
+55 B04 Blue Note
+23 B05 The Popes
+13 B06 Petrol
+12 B07 King of Kings
+14 B08 O Salati
+13 B09 The Snails
+34 B10 The Earth
+55 B11 Cafe Coffee
+31 B12 Vermouth house
+45 B13 Jamon Session
+24 B14 Let¡¯s go to eat
+34 B15 I¡¯m hungry
+53 B16 The Gecko
+43 B17 The Black Sheep
+1.3
+1.5
+2.5
+4
+1.1
+1.2
+2.5
+1.5
+3
+4.5
+1.3
+1.5
+0.6
+3.5
+UPV B01
+B01 B02
+B01 B03
+B01 B16
+B02 B03
+B02 B11
+B16 B08
+B16 B14
+B16 B03
+B03 B04
+B03 B11
+B04 B11
+B04 B16
+B04 B05
+B05 B14
+B08 B09
+B08 B15
+B08 B14
+B11 B06
+B14 B15
+B05 B06
+B05 B16
+B05 B10
+B15 B09
+B15 B10
+B09 B12
+B06 B10
+B06 B17
+B10 B07
+B10 B17
+B10 B12
+B10 B14
+B12 B15
+B12 B07
+B12 SPV
+B17 B07
+Universidad de Valladolid OJ: 12552 { The Moon of Valencia
+4/5
+B17 B13
+B07 B13
+B07 SPV
+B13 SPV
+ARRIVALS
+23:00 UPV 03:00 SPV
+23:00 UPV 03:00 SPV
+23:00 UPV 03:00 SPV
+23:00 UPV 03:00 SPV
+23:00 UPV 03:00 SPV
+23:00 UPV 03:00 SPV
+23:00 UPV 03:00 SPV
+23:00 UPV 03:00 SPV
+23:00 UPV 03:00 SPV
+23:00 UPV 03:00 SPV
+23:00 UPV 03:00 SPV
+23:00 UPV 03:00 SPV
+23:00 UPV 03:00 SPV
+23:00 UPV 03:00 SPV
+23:00 B05 03:00 B10
+23:00 B05 03:00 B10
+23:00 B05 03:00 B10
+23:00 B05 03:00 B10
+23:00 B05 03:00 B10
+23:00 B05 03:00 B10
+23:00 B05 03:00 B10
+23:00 B05 03:00 B10
+23:00 B05 03:00 B10
+MAP 2 1
+0 0 0 UPV Universitat Politecnica de Valencia
+10 10 0 SPV Hotel Silken Puerta de Valencia
+UPV SPV
+ARRIVALS
+23:00 UPV
+23:00 UPV
+9.0
+8.0
+7.0
+6.0
+5.0
+4.0
+3.0
+2.0
+1.0
+0.0
+-1.0
+-2.0
+-30.0
+-40.0
+40.0
+30.0
+20.0
+10.0
+0.0
+-10.0
+-20.0
+-30.0
+-40.0
+1:00 SPV
+1:00 SPV
+9.0
+8.0

@@ -1,0 +1,32 @@
+4
+canBreathe hasFood hasWater
+canBreathe hasWater
+hasWater muchCold
+hasFood muchCold hasWater
+24
+A0canBreathe
+Universidad de Valladolid OJ: 958 { A Homer¡¯s Holiday
+3/4
+A3hasFood
+S0muchCold
+S2A1hasWater
+A0S1hasWater
+A0NhasFood
+A0hasWater
+A1canBreathe
+A3canBreathe
+A2muchCold
+A0S0muchCold
+A0S3muchCold
+A0S2NmuchCold
+S122muchCold
+NNA1canBreathe
+NNA1hasFood
+S2A0hasWater
+S1A0muchCold
+A1S1muchCold
+A1S1canBreathe
+A2S3muchCold
+A0NS2muchCold
+A0NS2canBreathe
+A1S0A0NhasWater

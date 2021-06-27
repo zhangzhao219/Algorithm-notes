@@ -1,0 +1,16 @@
+c = {}
+d = {'color': 'red', 'price': 2, 7: 'test', 100: -100}
+length(d)
+d[7] = {'this': 'is', 'a': 'book'}
+length(d)
+d[8] = {'this' : 'is', 'another' : {'a' : 'book', 'b': 'book2'}
+length(d)
+c[7] = c
+test(c)
+test(d)
+length(c)
+d[0] = c
+length(d)
+test(d[0])
+Universidad de Valladolid OJ: 11886 ¨C Infinite Dictionaries
+3/3

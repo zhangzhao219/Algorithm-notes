@@ -1,0 +1,8 @@
+R1 8 4 5 7 B 4 3 6 90 B
+R3 7 8 11 14 Average(A3:D3,A3) SumF(A1 A2) B B B B
+R5 B 3 4 B B B B B B Large( B1:B10 , 3)
+R6 B 4 3 B B B B B B Average(4, J7)
+R7 B CountIf(B1:B6,">0") LARGE(C1:C6,D1:E6,1) B B
+B B B
+B Large(B1:B10, 5)
+R10 B Mode(A1:I1) Median(A1:I1,B1:B3) B B B B B B SUMIF(B5:C6,">3",A1:D1)

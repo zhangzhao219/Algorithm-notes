@@ -1,0 +1,12 @@
+Fido < 20
+Bibo <= Fido
+Fred < Bibo
+20 > Fred
+-
+1 <= 3
+1 = 1
+-
+Fido < 20
+Bibo < Fido
+20 < Fido
+-

@@ -1,0 +1,40 @@
+S
+SABC
+ab
+S -> AB
+S -> BC
+A -> BA
+A -> a
+Universidad de Valladolid OJ: 10597 ¨C Right Words
+2/2
+B -> CC
+B -> b
+C -> AB
+C -> a
+# -> #
+baaba
+ab
+abaa
+a
+aaaaa
+bbbbb
+#
+S
+SAB
+ab
+S -> AB
+A -> AA
+A -> a
+B -> b
+# -> #
+ab
+aaab
+aba
+baaaaaaaa
+abbbbbb
+aaaaaba
+baaaaaaaab
+aaaa
+a
+ab
+#

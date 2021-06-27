@@ -1,0 +1,11 @@
+r2d2 3
+f(X,g(c))
+f(f(Y),Z)
+f(c,g(Y,d))
+c3po 2
+f(X,g(c))
+f(f(Y),Z)
+PC2 2
+f(f(Y),Z)
+f(c,g(Y,d))
+END 0

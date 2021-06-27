@@ -1,0 +1,9 @@
+A = B = 4
+C = (D = 2)*_2
+C = D = 2 * _2
+F = C - D
+E = D * _10
+Z = 10 / 3
+#
+Universidad de Valladolid OJ: 172 ¨C Calculator Language
+2/2

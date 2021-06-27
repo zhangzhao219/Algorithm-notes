@@ -1,0 +1,10 @@
+S(#C,A,D)
+R(#A,B)
+T(E,A)
+data
+T(e1,a2)
+S(c3,a1,d1)
+S(c1,a2,d2)
+S(c2,a1,d3)
+R(a1,b1)
+R(a2,b2)

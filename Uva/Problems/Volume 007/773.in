@@ -1,0 +1,11 @@
+A is [1].
+B is [3].
+C is A B.
+SEQ is [1 ] A [4] B A.
+A = 10.
+B = 1 2 3.
+C = 1 1 2 3 4.
+SEQ = 1 10 1 1 1 1 2 2 2 10.
+SEQ = 1 10 1 1 1 1 1 2 3 9.
+Universidad de Valladolid OJ: 773 { The JustaPox Language
+3/3

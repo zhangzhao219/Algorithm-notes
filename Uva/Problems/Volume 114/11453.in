@@ -1,0 +1,19 @@
+5
+Murcia 422861
+Cartagena 211286
+Lorca 89936
+Molina 62463
+Yecla 35161
+6
+Murcia Cartagena 55
+Murcia Molina 13
+Lorca Yecla 165
+Cartagena Yecla 186
+Cartagena Molina 64
+Molina Yecla 92
+1
+500
+1.2
+Cartagena
+2
+Murcia Lorca

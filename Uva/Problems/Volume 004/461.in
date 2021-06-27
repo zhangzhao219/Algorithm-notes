@@ -1,0 +1,20 @@
+60 5 N B
+0 4 N B
+10 3 N B
+10 2 N B
+13 2 N B
+0 6 N B
+Universidad de Valladolid OJ: 461 ¨C The Reservation Maker
+2/2
+30 12 N T
+60 8 S B
+Sample Input
+1 0
+2 0
+3 0
+4 0
+1 0
+2 47
+11 12 13 14 15 0
+Impossible
+

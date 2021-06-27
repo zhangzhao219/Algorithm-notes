@@ -1,0 +1,24 @@
+3
+A->BD
+BD->C
+A->C
+6
+P->RST
+VRT->SQP
+PS->T
+Universidad de Valladolid OJ: 219 ¨C Department of Redundancy Department
+2/2
+Q->TR
+QS->P
+SR->V
+5
+A->B
+A->C
+B->D
+C->D
+A->D
+3
+A->B
+B->C
+A->D
+0

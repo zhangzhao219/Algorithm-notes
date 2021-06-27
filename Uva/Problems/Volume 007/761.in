@@ -1,0 +1,15 @@
+thinner
+rih
+a
+x
+Sample output
+6: thinner -> rhinner
+5: rhinner -> rinner
+7: rinner -> rinnhr
+5: rinnhr -> rinhr
+5: rinhr -> rihr
+Universidad de Valladolid OJ: 761 ¨C Transform those strings
+2/2
+5: rihr -> rih
+no
+

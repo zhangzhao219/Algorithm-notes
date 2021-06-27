@@ -1,0 +1,8 @@
+a + b - c
++ a - b c
+Sample Input
+INFIX
+=> a + b - c
+PREFIX => + a - b c
+POSTFIX => a b c - +
+

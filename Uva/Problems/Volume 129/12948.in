@@ -1,0 +1,43 @@
+2 3 1
+Earth
+Mars
+Earth Mars 2 3
+Earth Mars 4 1
+Earth Earth 3 2
+Earth
+Mars 0
+3 3 5
+Tatooine
+Endor
+Geonosis
+Tatooine Endor 300 15
+Endor Geonosis 10 78
+Geonosis Tatooine 1 1
+Universidad de Valladolid OJ: 12948 ¨C Interstel lar Travel
+2/2
+Endor
+Endor 0
+Geonosis 0
+Geonosis 4
+Tatooine 0
+Tatooine 1
+5 5 8
+Earth
+Kaishin
+Namek
+Vegeta
+NewNamek
+Earth Kaishin 10 10
+Kaishin Namek 10 5
+Kaishin Vegeta 15 30
+Earth Vegeta 25 50
+NewNamek Earth 100 1
+Earth
+Kaishin 0
+Kaishin 1
+Kaishin 2
+Namek 0
+Namek 1
+Vegeta 0
+Vegeta 1
+NewNamek 5

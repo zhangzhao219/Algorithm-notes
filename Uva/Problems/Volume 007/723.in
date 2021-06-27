@@ -1,0 +1,18 @@
+Program Test (input, output);
+{ this is a great program }
+Var
+X, Y
+:
+integer
+;
+begin
+readln (X, Y);
+writeln (X,
+end.
+' This is Y
+',
+Y,
+"Hi!')
+;
+Universidad de Valladolid OJ: 723 ¨C Comment Removal
+2/2

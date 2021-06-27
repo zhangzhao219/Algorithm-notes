@@ -1,0 +1,80 @@
+1
+START 3
+AEIOUaeiou START *
+\n
+END
+\n
+\c
+START \c
+This is input for example one.
+2
+START 3
+\c
+Xx
+\n
+4
+AEIOU START \0
+aeiou START \0
+Xx
+SKIP
+\c
+\n
+END
+\n
+Test
+XIo iXixO
+START \c
+SKIP
+\c
+END
+\n
+!
+E
+O
+a
+i
+u
+FINIS \0
+TWO
+e
+TWO
+o
+TWO
+A
+TWO
+I
+TWO
+U
+SKIP
+XaXxe
+3
+START 12
+\c START \c
+A TWO
+a
+I TWO
+i
+U TWO
+u
+e TWO
+E
+o TWO
+O
+Universidad de Valladolid OJ: 328 ¨C The Finite State Text-Processing Machine
+3/3
+TWO
+4
+\c TWO
+\c
+AEIOU START \c
+aeiou START \c ! FINIS
+\0
+FINIS 2
+\c FINIS \0
+\n
+END
+\n
+This is some data for FSM number 3.
+!
+IGNORED
+0

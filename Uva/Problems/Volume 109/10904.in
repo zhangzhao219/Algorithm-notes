@@ -1,0 +1,12 @@
+type A = int
+type B = A
+type C = int
+type X = struct(A B)
+type Y = struct(B A)
+type Z = struct(A Z)
+type S = struct(A S)
+type W = struct(B R)
+type R = struct(C W)
+--
+Universidad de Valladolid OJ: 10904 ¨C Structural Equivalence
+2/2

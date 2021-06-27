@@ -1,0 +1,60 @@
+8
+Explanation
+Initially d = 0
+Since d = 0 and x1 [d] = 0, y1 [d] = 0
+Decoded co-ordinates: 0 0 0 5 5 0
+In the picture it is ABC triangle
+Since d = 0 and x1 [d] = 0, y1 [d] = 0
+Decoded co-ordinates: 10 10 10 5 5 10
+In the picture it is DEF triangle
+Since d = 0 and x1 [d] = 0, y1 [d] = 0
+Decoded co-ordinates: 5 5
+This is out of region. Answer is 0 and so d = 0.
+In the picture it is G point
+Since d = 0 and x1 [d] = 0, y1 [d] = 0
+Decoded co-ordinates: 1 1
+This is in 1st region. Answer is 1 and so d = 1.
+In the picture it is H point
+Since d = 1 and x1 [d] = 0, y1 [d] = 0
+Decoded co-ordinates: 9 9
+This is in 2nd region. Answer is 2 and so d = 2.
+In the picture it is I point
+R -6 -4 -4 -6 -6 -6 Since d = 2 and x1 [d] = 10, y1 [d] = 10
+Decoded co-ordinates: 4 6 6 4 4 4
+In the picture it is JKL triangle
+Since d = 2 and x1 [d] = 10, y1 [d] = 10
+Decoded co-ordinates: 5 5
+This is on the boundary of 3rd region.
+Answer is -1 and so d = (cid:0)1.
+In the picture it is G point again
+Since d = (cid:0)1 and x1 [d] = 0, y1 [d] = 0
+Decoded co-ordinates: 1 1
+This is in 1st region. Answer is 1 and so d = 1.
+In the picture it is H point again
+Since d = 1 and x1 [d] = 0, y1 [d] = 0
+Decoded co-ordinates: 0 5 4 4 5 0
+In the picture it is BLC triangle
+Since d = 1 and x1 [d] = 0, y1 [d] = 0
+Decoded co-ordinates: 3 3
+This is in 4th region. Answer is 4 and so d = 4.
+In the picture it is M point
+R 0 5 4 4 5 0
+Q -5 -5
+Q 1 1
+Q 3 3
+The following picture should give you an idea of how one of the judge test case look like:
+Universidad de Valladolid OJ: 12698 { Safari Park
+4/4
+Sample Input
+1
+10
+R 0 0 0 5 5 0
+R 10 10 10 5 5 10
+Q 5 5
+Q 1 1
+Q 9 9
+R -6 -4 -4 -6 -6 -6
+Q -5 -5
+Q 1 1
+R 0 5 4 4 5 0
+Q 3 3

@@ -1,0 +1,38 @@
+-- PROGRAM: Eight-Queen problem solver in Mini-Lua
+function dfs(d)
+if d == n then
+cnt = cnt + 1
+else
+for i = 1, n do
+if (not vis[i]) and (not vis2[d-i]) and (not vis3[d+i]) then
+vis[i] = true
+vis2[d-i] = true
+vis3[d+i] = true
+dfs(d+1)
+vis[i] = nil
+vis2[d-i] = nil
+vis3[d+i] = nil
+end
+end
+end
+end
+vis = {}
+vis2 = {}
+vis3 = {}
+cnt = 0
+n = 8
+dfs(0)
+print(cnt)
+-- PROGRAM: Scoping and Visibility rules
+x = 10
+do
+local x = x
+print(x)
+x = x+1
+do
+local x = x+1
+print(x)
+end
+print(x)
+end
+print(x)

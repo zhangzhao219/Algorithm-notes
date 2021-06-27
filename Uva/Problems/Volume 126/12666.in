@@ -1,0 +1,53 @@
+3 3
+(equal (option-value) (count-question (make-answer-equal "a")))
+3
+0
+1
+(equal (option-value) "a")
+"c"
+"b"
+"a"
+((option-value) (count-question (make-answer-equal "c")))
+(make-and (make-is-multiple 2) (make-or factorial-p prime-p))
+(make-not prime-p)
+"none-of-above"
+3 2
+(equal (option-value) (answer 2))
+"a"
+"none-of-above"
+(equal (option-value) (first-question (make-answer-diff-next-equal 0)))
+1
+2
+((option-value) (last-question (make-answer-equal "b")))
+(make-is-multiple 2)
+(make-not (make-is-multiple 2))
+3 2
+(equal (option-value) (answer 1))
+"a"
+"b"
+((option-value) (last-question (make-answer-diff-next-equal 0)))
+(make-equal 2)
+"none-of-above"
+((option-value) (only-question (make-answer-equal "b")))
+(make-is-multiple 2)
+"none-of-above"
+2 5
+((option-value) (diff-answer 1 2))
+factorial-p
+prime-p
+(make-not square-p)
+(make-not cubic-p)
+"none-of-above"
+(equal (only-question (option-value)) 1)
+(make-answer-is consonant-p)
+(make-answer-is vowel-p)
+(make-answer-value-equal 1)
+(make-answer-value-is square-p)
+"none-of-above"
+2 2
+(option-value)
+(equal (first-question (make-answer-diffnext-equal 2)) (first-question (makeanswer-diff-next-equal 2)))
+"none-of-above"
+(equal (option-value) 1)
+1
+2

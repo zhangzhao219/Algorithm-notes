@@ -1,0 +1,15 @@
+1
+8
+<a good="true" wants="no">
+<b>
+<c contest="running">
+<d ballon="no">
+</d>
+</c>
+</b>
+</a>
+4
+a.b.c.d["ballon"]
+a.c["contest"]
+a.b.c["contest"]
+c["contest"]

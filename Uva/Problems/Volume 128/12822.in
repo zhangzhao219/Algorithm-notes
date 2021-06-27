@@ -1,0 +1,19 @@
+START 09:00:00
+SCORE 09:01:05 home 2
+SCORE 09:10:07 guest 3
+END 09:15:00
+START 09:00:00
+SCORE 10:00:00 home 1
+SCORE 11:00:00 home 1
+SCORE 12:00:00 home 1
+SCORE 13:00:00 home 1
+SCORE 14:00:00 home 1
+SCORE 15:00:00 home 1
+SCORE 16:00:00 home 1
+SCORE 17:00:00 home 1
+SCORE 18:00:00 home 1
+SCORE 19:00:00 home 1
+SCORE 20:00:00 home 1
+END 21:00:00
+Universidad de Valladolid OJ: 12822 { Extraordinarily large LED
+2/2

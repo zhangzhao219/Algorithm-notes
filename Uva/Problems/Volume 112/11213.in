@@ -1,0 +1,31 @@
+4 3 M
+First
+XOXO
+XOXO
+OXOX
+#TOX
+r1 r2 r3 r4 c1 c1 c1 c1 c2 c3 c4 X
+4 3 #
+Pipes
+TT##
+OOTT
+TXXX
+O#TX
+r1 r2 X r4 X c1 c1 c1 c1 c2 c3 X
+4 3 T
+NoGreedy!!!
+X##T
+TXXT
+TTT#
+OXOT
+r1 r2 r3 r4 c1 c1 c1 c1 c2 c3 c4 X
+4 3 O
+Tough...
+XOTO
+O##O
+TXOO
+X#TO
+r1 r2 r3 r4 c1 c1 c1 c1 c2 c2 c4 X
+0
+Universidad de Valladolid OJ: 11213 ¨C Flipul l
+3/3

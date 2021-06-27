@@ -1,0 +1,12 @@
+1
+Bygd Bomvei road 7
+2
+Ferje Overfarten ferry 20 2 5 25
+Overfarten Havneby ferry 30 3 10 30 50
+5
+Begynnelse Brygge road 30
+Brygge Bestemmelse ferry 15 4 10 25 40 55
+Bestemmelse Veiskillet road 20
+Veiskillet Grusvei road 25
+Grusvei Slutt ferry 50 1 10
+0
