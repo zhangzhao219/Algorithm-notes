@@ -26,6 +26,9 @@
         "latch": "cpp",
         "limits": "cpp",
         "semaphore": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "tuple": "cpp",
+        "variant": "cpp",
+        "ostream": "cpp"
     }
 }

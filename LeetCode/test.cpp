@@ -1,44 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-bool judgemp(unordered_map<char, int> mp){
-    for(auto it = mp.begin();it != mp.end();it++){
-        if(it->second != 0){
-            return false;
-        }
+vector<int> father;
+int findfather(int a){
+    if(a == father[a]){
+        return a;
     }
-    return true;
+    return father[a] = findfather(father[a]);
 }
-vector<int> findAnagrams(string s, string p) {
-    vector<int> result;
-    unordered_map<char, int> mp;
-    for(int i=0;i<p.length();i++){
-        mp[p[i]] += 1;
+void join(int a, int b){
+    a = findfather(a);
+    b = findfather(b);
+    if(a == b){
+        return;
     }
-    int left = 0;
-    for(int right=0;right < s.length();right++){
-        mp[s[right]] -= 1;
-        if(right - left != p.length()-1){
-            continue;
-        }
-        cout << right << endl;
-        for(auto it = mp.begin();it != mp.end();it++){
-            cout << it->first << " " << it->second << endl;
-        }
-        if(judgemp(mp)){
-            result.push_back(left);
-        }
-        mp[s[left]] += 1;
-        left += 1;
+    father[a] = b;
+}
+bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+    for(int i=0;i<n;i++){
+        father.push_back(i);
     }
-    return result;
+    
+    for(int i=0;i<n;i++){
+        cout << "1" << endl;
+        cout << edges[i][0] << " " << edges[i][1] << endl;
+        join(edges[i][0], edges[i][1]);
+        cout << edges[i][0] << " " << edges[i][1] << endl;
+    }
+    cout << "2" << endl;
+    if(findfather(source) == findfather(destination)){
+        return true;
+    }
+    return false;
 }
 
 int main(){
-    string s = "cbaebabacd";
-    string t = "abc";
-    vector<int> result = findAnagrams(s,t);
-    for(int i=0;i<result.size();i++){
-        cout << result[i] << endl;
-    }
+    vector<vector<int> > a = {
+        {0,1},
+        {0,2},
+        {3,5},
+        {5,4},
+        {4,3},
+    };
+    cout << validPath(6,a,0,5) << endl;
 }
