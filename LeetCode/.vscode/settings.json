@@ -29,6 +29,7 @@
         "iostream": "cpp",
         "tuple": "cpp",
         "variant": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "system_error": "cpp"
     }
 }
