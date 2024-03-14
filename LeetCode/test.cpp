@@ -1,47 +1,46 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int findTargetSumWays(vector<int>& nums, int target) {
-    int numsum = 0;
-    for(int i=0;i<nums.size();i++){
-        numsum += nums[i];
-    }
-    if(abs(target) > numsum){
-        return 0;
-    }
-    if((target + numsum) % 2 == 1){
-        return 0;
-    }
-    int bagSize = (target + numsum) / 2;
-    vector<vector<int> > dp(nums.size(), vector<int>(bagSize+1,0));
-    for(int i=0;i<=bagSize+1;i++){
-        dp[0][i] = 1;
-    }
-    dp[0][0] = 1;
-    for(int i=1;i<nums.size();i++){
-        for(int j=0;j<=bagSize+1;j++){
-            if(j == 0){
-                dp[i][j] = 1;
+vector<vector<int>> fourSum(vector<int>& nums, int target) {
+    vector<vector<int> > result;
+    sort(nums.begin(), nums.end());
+    cout << nums.size() << endl;
+    for(int i=0;i<=nums.size();i++){
+        cout << i << endl;
+        if(i > 0 && nums[i] == nums[i-1]){
+            continue;
+        }
+        for(int l=i;l<nums.size();l++){
+            if(l < nums.size()-1 && nums[l] == nums[l+1]){
+                continue;
             }
-            else{
-                if(j >= nums[i]){
-                    dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i]];
+            int j = i + 1;
+            int k = l - 1;
+
+            while(j < k){
+                if(nums[i] + nums[j] + nums[k] + nums[l] == target){
+                    result.push_back(vector<int>{nums[i], nums[j], nums[k], nums[l]});
+                    while(j < k && nums[j] == nums[j+1]){
+                        j++;
+                    }
+                    while(j < k && nums[k] == nums[k-1]){
+                        k--;
+                    }
+                    j++;
+                    k--;
+                } else if(nums[i] + nums[j] + nums[k] + nums[l] > target){
+                    k--;
                 } else{
-                    dp[i][j] = dp[i-1][j];
+                    j++;
                 }
             }
         }
     }
-    for(int i=0;i<nums.size();i++){
-        for(int j=0;j<=bagSize+1;j++){
-            cout << dp[i][j] << " ";
-        }
-        cout << endl;
-    }
-    return dp[nums.size()-1][bagSize+1];
+    return result;
 }
 
 int main(){
-    vector<int> a = {0,0,0,0,0,0,0,0,1};
-    cout << findTargetSumWays(a,1) << endl;
+    vector<int> a = {0};
+    fourSum(a,0);
+    // cout <<  << endl;
 }
