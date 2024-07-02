@@ -8,22 +8,23 @@
 class Solution {
 public:
     int trap(vector<int>& height) {
-        stack<int> st;
-        st.push(0);
-        int sum = 0;
-        for (int i = 1; i < height.size(); i++) {
-            while (!st.empty() && height[i] > height[st.top()]) {
-                int mid = st.top();
-                st.pop();
-                if (!st.empty()) {
-                    int h = min(height[st.top()], height[i]) - height[mid];
-                    int w = i - st.top() - 1;
-                    sum += h * w;
-                }
+        int result = 0;
+        int leftMax = 0;
+        int rightMax = 0;
+        int left = 0;
+        int right = height.size() - 1;
+        while(left < right){
+            leftMax = max(leftMax, height[left]);
+            rightMax = max(rightMax, height[right]);
+            if(height[left] < height[right]){
+                result += leftMax - height[left];
+                left += 1;
+            } else{
+                result += rightMax - height[right];
+                right -= 1;
             }
-            st.push(i);
         }
-        return sum;
+        return result;
     }
 };
 // @lc code=end

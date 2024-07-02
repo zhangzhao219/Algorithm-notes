@@ -22,19 +22,25 @@ public:
         if(nums.size() == 0){
             return NULL;
         }
-        int mid = nums.size() / 2;
+        int start = 0;
+        int end = nums.size();
+        int mid = (start + end) / 2;
+        vector<int> numsleft;
+        vector<int> numsright;
+        for(int i=start;i<end;i++){
+            if(i < mid){
+                numsleft.push_back(nums[i]);
+            } else if(i > mid){
+                numsright.push_back(nums[i]);
+            }
+        }
+        TreeNode* left = sortedArrayToBST(numsleft);
         TreeNode* root = new TreeNode(nums[mid]);
-        vector<int> leftnums;
-        vector<int> rightnums;
-        for(int i=0;i<mid;i++){
-            leftnums.push_back(nums[i]);
-        }
-        for(int i=mid+1;i<nums.size();i++){
-            rightnums.push_back(nums[i]);
-        }
-        root->left = sortedArrayToBST(leftnums);
-        root->right = sortedArrayToBST(rightnums);
+        TreeNode* right = sortedArrayToBST(numsright);
+        root->left = left;
+        root->right = right;
         return root;
+        
     }
 };
 // @lc code=end

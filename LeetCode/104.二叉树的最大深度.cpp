@@ -18,28 +18,18 @@
  */
 class Solution {
 public:
-    int maxDepth(TreeNode* root) {
-        int result = 0;
+    int max_depth = 0;
+    void DFS(TreeNode* root, int depth){
         if(root == NULL){
-            return result;
+            max_depth = max(max_depth, depth);
+            return;
         }
-        queue<TreeNode*> q;
-        q.push(root);
-        while(!q.empty()){
-            int s = q.size();
-            for(int i=0;i<s;i++){
-                TreeNode* t = q.front();
-                q.pop();
-                if(t->left != NULL){
-                    q.push(t->left);
-                }
-                if(t->right != NULL){
-                    q.push(t->right);
-                }
-            }
-            result += 1;
-        }
-        return result;
+        DFS(root->left, depth+1);
+        DFS(root->right, depth+1);
+    }
+    int maxDepth(TreeNode* root) {
+        DFS(root,0);
+        return max_depth;
     }
 };
 // @lc code=end

@@ -19,35 +19,35 @@
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        int rootval = preorder[0];
-        TreeNode* root = new TreeNode(rootval);
-        vector<int> newinorderleft;
-        vector<int> newinorderright;
-        vector<int> newpreorderleft;
-        vector<int> newpreorderright;
-        int inordersign = -1;
+        if(preorder.size() == 0){
+            return NULL;
+        }
+        int val = preorder[0];
+        TreeNode* root = new TreeNode(val);
+        int k;
+        vector<int> leftpreorder, leftinorder, rightpreorder, rightinorder;
         for(int i=0;i<inorder.size();i++){
-            if(inorder[i] == rootval){
-                inordersign = i;
-                newpreorderleft.push_back(preorder[i]);
-                continue;
+            if(inorder[i] == val){
+                k = i;
+                break;
             }
-            if(inordersign == -1){
-                newinorderleft.push_back(inorder[i]);
-                if(i != 0){
-                    newpreorderleft.push_back(preorder[i]);
-                }
+        }
+        for(int i=1;i<preorder.size();i++){
+            if(i <= k){
+                leftpreorder.push_back(preorder[i]);
             } else{
-                newinorderright.push_back(inorder[i]);
-                newpreorderright.push_back(preorder[i]);
+                rightpreorder.push_back(preorder[i]);
             }
         }
-        if(newinorderleft.size() != 0){
-            root->left = buildTree(newpreorderleft,newinorderleft);
+        for(int i=0;i<inorder.size();i++){
+            if(i < k){
+                leftinorder.push_back(inorder[i]);
+            } else if (i > k){
+                rightinorder.push_back(inorder[i]);
+            }
         }
-        if(newinorderright.size() != 0){
-            root->right = buildTree(newpreorderright,newinorderright);
-        }
+        root->left = buildTree(leftpreorder, leftinorder);
+        root->right = buildTree(rightpreorder, rightinorder);
         return root;
     }
 };

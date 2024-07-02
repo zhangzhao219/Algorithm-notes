@@ -6,37 +6,37 @@
 
 // @lc code=start
 class Solution {
+private:
+    vector<vector<string>> result;
+    vector<string> temp;
 public:
-    vector<vector<string> > result;
-    vector<string> path;
-    bool judgepa(string s, int startIndex, int endIndex){
-        while(startIndex < endIndex){
-            if(s[startIndex] != s[endIndex]){
+    bool judge(string t){
+        int start = 0;
+        int end = t.size() - 1;
+        while(start < end){
+            if(t[start] != t[end]){
                 return false;
             }
-            startIndex += 1;
-            endIndex -= 1;
+            start += 1;
+            end -= 1;
         }
         return true;
     }
-    void backtracking(string s, int startIndex){
-        if(startIndex >= s.size()){
-            result.push_back(path);
+    void backtracking(string s, int start){
+        if(start == s.size()){
+            result.push_back(temp);
             return;
         }
-        for(int i = startIndex;i<s.size();i++){
-            if(judgepa(s,startIndex,i)){
-                string str = s.substr(startIndex, i-startIndex+1);
-                path.push_back(str);
-            } else{
-                continue;
+        for(int i=1; i<=s.size()-start;i++){
+            string t = s.substr(start,i);
+            if(judge(t)){
+                temp.push_back(t);
+                backtracking(s,start+i);
+                temp.pop_back();
             }
-            backtracking(s,i+1);
-            path.pop_back();
         }
-
     }
-    vector<vector<string>> partition(string s) {
+    vector<vector<string> > partition(string s) {
         backtracking(s,0);
         return result;
     }

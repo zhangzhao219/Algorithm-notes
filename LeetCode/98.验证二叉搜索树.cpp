@@ -17,9 +17,8 @@
  * };
  */
 class Solution {
-private:
-    vector<int> result;
 public:
+    vector<int> result;
     void inorder(TreeNode* root){
         if(root == NULL){
             return;
@@ -31,12 +30,12 @@ public:
     bool isValidBST(TreeNode* root) {
         inorder(root);
         for(int i=0;i<result.size()-1;i++){
-            if(result[i] >= result[i+1]){
-                return false;
+            if(result[i] < result[i+1]){
+                continue;
             }
+            return false;
         }
         return true;
     }
 };
 // @lc code=end
-

@@ -6,66 +6,64 @@
 
 // @lc code=start
 class Solution {
+private:
+    vector<vector<string>> result;
 public:
-    vector<vector<string> > result;
-    vector<int> temp;
-    bool judge(int now, int end){
-        int now_size = temp.size();
-        for(int i=0;i<now_size;i++){
-            if(now == temp[i]){
+    bool judge(vector<vector<char> > &board, int i, int j, int n){
+        for(int p=0;p<i;p++){
+            if(board[p][j] == 'Q'){
                 return false;
             }
         }
-        int x = now_size - 1;
-        int y = now - 1;
-        while(x >= 0 && y >= 0){
-            if(temp[x] == y){
+        int l = i-1;
+        int r = j-1;
+        while(l >= 0 && r >= 0){
+            if(board[l][r] == 'Q'){
                 return false;
             }
-            x -= 1;
-            y -= 1;
+            l--;
+            r--;
         }
-        x = now_size - 1;
-        y = now + 1;
-        while(x >= 0 && y < end){
-            if(temp[x] == y){
+        l = i-1;
+        r = j+1;
+        while(l >= 0 && r < n){
+            if(board[l][r] == 'Q'){
                 return false;
             }
-            x -= 1;
-            y += 1;
+            l--;
+            r++;
         }
         return true;
     }
-    void backtracking(int start, int end){
-        if(start == end){
-            vector<string> s;
-            for(int i=0;i<end;i++){
-                int a = temp[i];
-                string temp_s = "";
-                for(int j=0;j<end;j++){
-                    if(j == a){
-                        temp_s += "Q";
-                    } else{
-                        temp_s += ".";
-                    }
+    void backtracking(vector<vector<char> > &board, int start, int n){
+        if(start == n){
+            vector<string> vt;
+            for(int i=0;i<n;i++){
+                string temp = "";
+                for(int j=0;j<n;j++){
+                    temp += board[i][j];
                 }
-                s.push_back(temp_s);
+                vt.push_back(temp);
             }
-            result.push_back(s);
+            result.push_back(vt);
             return;
         }
-        for(int i=0;i<end;i++){
-            if(judge(i,end)){
-                temp.push_back(i);
-                backtracking(start+1, end);
-                temp.pop_back();
+        for(int i=0;i<n;i++){
+            board[start][i] = 'Q';
+            if(judge(board,start,i,n)){
+                backtracking(board,start+1,n);
             }
+            board[start][i] = '.';
         }
     }
     vector<vector<string> > solveNQueens(int n) {
-        backtracking(0,n);
-        return result;
+        vector<vector<char> > board(n, vector<char>(n, '.'));
+        backtracking(board,0,n);
+        return result; 
     }
 };
 // @lc code=end
 
+// 输入：n = 4
+// 输出：[[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
+// 解释：如上图所示，4 皇后问题存在两个不同的解法。

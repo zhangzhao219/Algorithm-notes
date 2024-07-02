@@ -6,24 +6,23 @@
 
 // @lc code=start
 class Solution {
-public:
+private:
     vector<vector<int> > result;
-    vector<int> temp;
-    void backtracking(vector<int> nums, int startIndex, int maxIndex){
-        if(temp.size() == maxIndex){
-            result.push_back(temp);
+public:
+    void backtracking(vector<int>& nums, vector<int>& temp, int start){
+        result.push_back(temp);
+        if(start >= nums.size()){
             return;
         }
-        for(int i=startIndex;i<nums.size();i++){
+        for(int i=start;i<nums.size();i++){
             temp.push_back(nums[i]);
-            backtracking(nums, i+1, maxIndex);
+            backtracking(nums, temp, i+1);
             temp.pop_back();
         }
     }
     vector<vector<int>> subsets(vector<int>& nums) {
-        for(int i=0;i<=nums.size();i++){
-            backtracking(nums,0,i);
-        }
+        vector<int> temp;
+        backtracking(nums, temp, 0);
         return result;
     }
 };

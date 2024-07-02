@@ -1,36 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void BFS(vector<vector<int> >&island, vector<vector<bool> >& visited, int x, int y, int m, int n){
-    queue<pair<int, int> > q;
-    visited[x][y] = true;
-    q.push({x,y});
-    while(!q.empty()){
-        pair<int, int> p = q.front();
-        q.pop();
-        int a = p.first;
-        int b = p.second;
-        if(a-1 >= 0 && visited[a-1][b] == false && island[a-1][b] == 1){
-            visited[a-1][b] = true;
-            q.push({a-1,b});
-        }
-        if(b-1 >= 0 && visited[a][b-1] == false && island[a][b-1] == 1){
-            visited[a][b-1] = true;
-            q.push({a,b-1});
-        }
-        if(a+1 < m && visited[a+1][b] == false && island[a+1][b] == 1){
-            visited[a+1][b] = true;
-            q.push({a+1,b});
-        }
-        if(b+1 < n && visited[a][b+1] == false && island[a][b+1] == 1){
-            visited[a][b+1] = true;
-            q.push({a,b+1});
-        }
-    }
-    return;
-}
-
-void DFS(vector<vector<int> >&island, vector<vector<bool> >& visited, int x, int y, int m, int n){
+void DFS(vector<vector<int> >& island, vector<vector<bool> >& visited, int x, int y, int m, int n){
     if(x < 0 || y < 0 || x >= m || y >= n){
         return;
     }
@@ -38,10 +9,38 @@ void DFS(vector<vector<int> >&island, vector<vector<bool> >& visited, int x, int
         return;
     }
     visited[x][y] = true;
-    DFS(island, visited, x-1, y, m, n);
     DFS(island, visited, x+1, y, m, n);
+    DFS(island, visited, x-1, y, m, n);
     DFS(island, visited, x, y-1, m, n);
     DFS(island, visited, x, y+1, m, n);
+}
+
+void BFS(vector<vector<int> >& island, vector<vector<bool> >& visited, int x, int y, int m, int n){
+    queue<pair<int, int> > q;
+    q.push({x,y});
+    visited[x][y] = true;
+    while(!q.empty()){
+        pair<int, int> p = q.front();
+        q.pop();
+        int i = p.first;
+        int j = p.second;
+        if(i-1 >= 0 && island[i-1][j] == 1 && visited[i-1][j] == false){
+            visited[i-1][j] = true;
+            q.push({i-1,j});
+        }
+        if(j-1 >= 0 && island[i][j-1] == 1 && visited[i][j-1] == false){
+            visited[i][j-1] = true;
+            q.push({i,j-1});
+        }
+        if(i+1 < m && island[i+1][j] == 1 && visited[i+1][j] == false){
+            visited[i+1][j] = true;
+            q.push({i+1,j});
+        }
+        if(j+1 < n && island[i][j+1] == 1 && visited[i][j+1] == false){
+            visited[i][j+1] = true;
+            q.push({i,j+1});
+        }
+    }
 }
 
 int main(){
@@ -61,8 +60,8 @@ int main(){
         for(int j=0;j<n;j++){
             if(island[i][j] == 1 && visited[i][j] == false){
                 result += 1;
-                // BFS(island, visited, i, j, m, n);
-                DFS(island, visited, i, j, m, n);
+                BFS(island, visited, i, j, m, n);
+                // DFS(island, visited, i, j, m, n);
             }
         }
     }

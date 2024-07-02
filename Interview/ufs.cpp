@@ -3,29 +3,41 @@ using namespace std;
 
 vector<int> father;
 
-int findfather(int a){
-    if(a == father[a]){
-        return a;
+int findfather(int x){
+    if(x == father[x]){
+        return x;
     }
-    return father[a] = findfather(father[a]);
+    return father[x] = findfather(father[x]);
 }
+
 void join(int a, int b){
-    a = findfather(a);
-    b = findfather(b);
-    if(a == b){
-        return;
+    int faA = findfather(a);
+    int faB = findfather(b);
+    if(faA != faB){
+        father[faA] = faB;
     }
-    father[a] = b;
+    return;
 }
-bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
-    for(int i=0;i<n;i++){
+
+int main(){
+    vector<vector<int> > edges = {
+        {0,1},
+        {2,3},
+        {4,5},
+        {6,7},
+        {1,7},
+    };
+    int total = 8;
+    for(int i=0;i<total;i++){
         father.push_back(i);
     }
     for(int i=0;i<edges.size();i++){
-        join(edges[i][0], edges[i][1]);
+        int x = edges[i][0];
+        int y = edges[i][1];
+        join(x,y);
     }
-    if(findfather(source) == findfather(destination)){
-        return true;
+    for(int i=0;i<total;i++){
+        cout << findfather(i) << " ";
     }
-    return false;
+    cout << endl;
 }

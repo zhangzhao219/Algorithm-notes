@@ -17,24 +17,30 @@
  */
 class Solution {
 public:
+    ListNode* reverseList(ListNode* head){
+        ListNode* pre = NULL;
+        while(head != NULL){
+            ListNode* q = head->next;
+            head->next = pre;
+            pre = head;
+            head = q;
+        }
+        return pre;
+    }
     ListNode* swapPairs(ListNode* head) {
         ListNode* dummy = new ListNode(-1);
-        dummy->next = head;
-        ListNode* p = dummy;
-        while(p != NULL){
-            if (p->next != NULL && p->next->next != NULL){
-                ListNode* a = p->next;
-                ListNode* b = a->next;
-                ListNode* c = b->next;
-                p->next = b;
-                b->next = a;
-                a->next = c;
-                p = a;
-            } else{
-                break;
-            }
+        ListNode* realhead = dummy;
+        while(head != NULL && head->next != NULL){
+            ListNode* q = head->next->next;
+            head->next->next = NULL;
+            dummy->next = reverseList(head);
+            dummy = dummy->next->next;
+            head = q;
         }
-        return dummy->next;
+        if(head != NULL){
+            dummy->next = head;
+        }
+        return realhead->next;
     }
 };
 // @lc code=end

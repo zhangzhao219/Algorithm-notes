@@ -8,22 +8,33 @@
 class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
-        stack<int> st;
-        heights.insert(heights.begin(), 0);
-        heights.push_back(0); 
-        st.push(0);
-        int sum = 0;
-        for (int i = 1; i < heights.size(); i++) {
-            while (heights[i] < heights[st.top()]) {
-                int mid = st.top();
-                st.pop();
-                int w = i - st.top() - 1;
-                int h = heights[mid];
-                sum = max(sum, w * h);
-            }
-            st.push(i);
+        int result = 0;
+        int n = heights.size();
+        if(n == 1){
+            return heights[0];
         }
-        return sum;
+        vector<int> minLeftIndex(n,0);
+        vector<int> minRightIndex(n,0);
+        minLeftIndex[0] = -1;
+        for(int i=1;i<n;i++){
+            int t = i - 1;
+            while (t >= 0 && heights[t] >= heights[i]){
+                t = minLeftIndex[t];
+            }
+            minLeftIndex[i] = t;
+        }
+        minRightIndex[n-1] = n;
+        for(int i=n-2;i>=0;i--){
+            int t = i + 1;
+            while (t < n && heights[t] >= heights[i]){
+                t = minRightIndex[t];
+            }
+            minRightIndex[i] = t;
+        }
+        for(int i=0;i<n;i++){
+            result = max(result, heights[i] * (minRightIndex[i] - minLeftIndex[i] - 1));
+        }
+        return result;
     }
 };
 // @lc code=end

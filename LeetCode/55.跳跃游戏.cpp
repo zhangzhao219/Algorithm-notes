@@ -8,21 +8,17 @@
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
-        vector<bool> judge(nums.size(),false);
-        judge[0] = true;
+        int n = nums.size();
+        int result = 0;
         for(int i=0;i<nums.size();i++){
-            if(judge[i] == true){
-                for(int j=i;j<=i+nums[i];j++){
-                    if(j < nums.size()){
-                        judge[j] = true;
-                        if(judge[nums.size()-1] == true){
-                            return true;
-                        }
-                    }
+            if (i <= result){
+                result = max(result, i + nums[i]);
+                if(result >= n - 1){
+                    return true;
                 }
             }
         }
-        return judge[nums.size()-1];
+        return false;
     }
 };
 // @lc code=end

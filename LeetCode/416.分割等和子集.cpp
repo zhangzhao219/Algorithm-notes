@@ -8,31 +8,22 @@
 class Solution {
 public:
     bool canPartition(vector<int>& nums) {
-        int numsum = 0;
-        for(int i=0;i<nums.size();i++){
-            numsum += nums[i];
+        int sum = 0;
+        for(int num : nums){
+            sum += num;
         }
-        if(numsum % 2 != 0){
+        if(sum % 2 == 1){
             return false;
         }
-        int target = numsum / 2;
-        vector<vector<int> > dp(nums.size(), vector<int>(target+1,0));
-        for(int i=0;i<=target;i++){
-            if(i >= nums[0]){
-                dp[0][i] = nums[0];
+        sum /= 2;
+        vector<bool> dp(sum+1,false);
+        dp[0] = true;
+        for(int i=0;i<nums.size();i++){
+            for(int j=sum;j>=nums[i];j--){
+                dp[j] = dp[j] || dp[j-nums[i]];
             }
         }
-        for(int i=1;i<nums.size();i++){
-            for(int j=0;j<=target;j++){
-                if(j < nums[i]){
-                    dp[i][j] = dp[i-1][j];
-                }
-                else{
-                    dp[i][j] = max(dp[i-1][j], dp[i-1][j-nums[i]] + nums[i]);
-                }
-            }
-        }
-        return dp[nums.size()-1][target] == target;
+        return dp[sum];
     }
 };
 // @lc code=end

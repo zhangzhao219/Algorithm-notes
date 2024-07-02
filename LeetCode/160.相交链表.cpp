@@ -18,25 +18,19 @@ public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode* p = headA;
         ListNode* q = headB;
-        int flag = 4;
-        while(flag > 0){
-            if(p == q){
-                return p;
-            }
-            if (p->next != NULL){
-                p = p->next;
-            } else{
+        while(p != q){
+            if(p == NULL){
                 p = headB;
-                flag -= 1;
-            }
-            if(q->next != NULL){
-                q = q->next;
             } else{
+                p = p->next;
+            }
+            if(q == NULL){
                 q = headA;
-                flag -= 1;
+            } else{
+                q = q->next;
             }
         }
-        return NULL;
+        return p;
     }
 };
 // @lc code=end

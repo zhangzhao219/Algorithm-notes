@@ -6,44 +6,39 @@
 
 // @lc code=start
 class Solution {
+private:
+    unordered_map<char, int> map_window, map_base;
+    bool check() {
+        for (auto &it : map_base) { // 遍历字符串t的哈希表！！不要遍历错了！！
+            // 只要出现窗口内的某字符数量<字符串t的同一字符数量，则说明“窗口字符串”未覆盖“字符串t”
+            if (map_window[it.first] < it.second) {
+                return false;
+            }
+        }
+        return true;
+    }
 public:
     string minWindow(string s, string t) {
-        map<char,int> mp;
-        int zero_count = 0;
-        for (int i=0;i<t.size();i++){
-            mp[t[i]] += 1;
-            if (mp[t[i]] == 1){
-                zero_count += 1;
-            } 
+        // 初始化固定“字符串t”的字符频率哈希表
+        for (char c : t) {
+            map_base[c]++;
         }
-        int min_begin = 0;
-        int min_end = s.size();
         int left = 0;
-        bool istrue = false;
-        for(int right=0;right < s.size();right += 1){
-            
-            mp[s[right]]--;
-            if (mp[s[right]] == 0){
-                zero_count -= 1;
-            }
-            while(zero_count == 0){
-                istrue = true;
-                if (right - left < min_end - min_begin){
-                    min_end = right;
-                    min_begin = left;
+        int current_min_length = INT_MAX; // 因为后续下相当于取min，所以这里取MAX
+        int res_start_index = -1;
+        for (int right = 0; right < s.size(); right++) {
+            map_window[s[right]]++; // 更新“当前窗口字符串”的哈希表（right右移，添加字符）
+            while (check()) { // 如果覆盖
+                if (right - left + 1 < current_min_length) { // 窗口大小 < 当前覆盖子串最小长度
+                    current_min_length = right - left + 1; // 更新当前覆盖子串的最小长度
+                    res_start_index = left; // 记录该覆盖子串的起始索引。最后直接通过起始索引+最小长度来求结果，避免这里重复的拷贝复制
                 }
-                if(mp[s[left]] == 0){
-                    zero_count = 1;
-                }
-                mp[s[left]] += 1;
-                left += 1;
+                map_window[s[left]]--; // 更新“当前窗口字符串”的哈希表（left右移，删除字符）
+                left++;
             }
-
         }
-        if (istrue){
-            return s.substr(min_begin,min_end-min_begin+1);
-        }
-        return "";
+        // 别漏了无结果的情况，返回空串
+        return res_start_index == -1 ? "" : s.substr(res_start_index, current_min_length);
     }
 };
 // @lc code=end

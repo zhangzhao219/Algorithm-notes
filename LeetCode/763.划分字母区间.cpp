@@ -8,18 +8,19 @@
 class Solution {
 public:
     vector<int> partitionLabels(string s) {
-        int hash[27] = {0};
-        for (int i = 0; i < s.size(); i++) { 
-            hash[s[i] - 'a'] = i;
-        }
         vector<int> result;
-        int left = 0;
-        int right = 0;
-        for (int i = 0; i < s.size(); i++) {
-            right = max(right, hash[s[i] - 'a']); 
-            if (i == right) {
-                result.push_back(right - left + 1);
-                left = i + 1;
+        int n = s.size();
+        vector<int> alphabet(26,0);
+        for(int i=0;i<s.size();i++){
+            alphabet[s[i] - 'a'] = i;
+        }
+        int start = 0;
+        int end = 0;
+        for(int i=0;i<s.size();i++){
+            end = max(end, alphabet[s[i] - 'a']);
+            if(i == end){
+                result.push_back(end - start + 1);
+                start = end + 1;
             }
         }
         return result;

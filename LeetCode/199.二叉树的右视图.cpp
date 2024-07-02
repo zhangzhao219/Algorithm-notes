@@ -30,15 +30,14 @@ public:
             for(int i=0;i<s;i++){
                 TreeNode* t = q.front();
                 q.pop();
-                if(i == s-1){
-                    result.push_back(t->val);
-                }
-
                 if(t->left != NULL){
                     q.push(t->left);
                 }
                 if(t->right != NULL){
                     q.push(t->right);
+                }
+                if(i == s-1){
+                    result.push_back(t->val);
                 }
             }
         }

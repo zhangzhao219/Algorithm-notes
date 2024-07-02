@@ -18,26 +18,25 @@
  */
 class Solution {
 public:
-    bool DFS(TreeNode* left, TreeNode* right){
+    bool issame(TreeNode* left, TreeNode* right){
         if(left == NULL && right == NULL){
             return true;
-        }
-        if(left == NULL){
+        } else if(left == NULL){
             return false;
-        }
-        if(right == NULL){
+        } else if(right == NULL){
             return false;
+        } else{
+            if(left->val != right->val){
+                return false;
+            }
         }
-        if(left->val != right->val){
-            return false;
-        }
-        return DFS(left->left, right->right) && DFS(right->left, left->right);
+        return issame(left->right, right->left) && issame(right->right, left->left);
     }
     bool isSymmetric(TreeNode* root) {
         if(root == NULL){
             return true;
         }
-        return DFS(root->left, root->right);
+        return issame(root->left, root->right);
     }
 };
 // @lc code=end

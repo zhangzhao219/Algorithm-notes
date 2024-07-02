@@ -8,40 +8,28 @@
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> result;
         int m = matrix.size();
         int n = matrix[0].size();
-        vector<int> res(m*n);
-        vector<vector<bool> > judge(m, vector<bool>(n));
-        int x = 0;
-        int y = -1;
-        int index = 0;
-        while(index < m * n){
-            while(index < m * n && y+1 < n && judge[x][y+1] == false){
-                y += 1;
-                judge[x][y] = true;
-                res[index] = matrix[x][y];
-                index += 1;
-            }
-            while(index < m * n && x+1 < m && judge[x+1][y] == false){
-                x += 1;
-                judge[x][y] = true;
-                res[index] = matrix[x][y];
-                index += 1;
-            }
-            while(index < m * n && y-1 >= 0 && judge[x][y-1] == false){
-                y -= 1;
-                judge[x][y] = true;
-                res[index] = matrix[x][y];
-                index += 1;
-            }
-            while(index < m * n && x-1 >= 0 && judge[x-1][y] == false){
-                x -= 1;
-                judge[x][y] = true;
-                res[index] = matrix[x][y];
-                index += 1;
+        vector<vector<bool> > visit(m, vector<bool>(n, false));
+        vector<vector<int> > directions{
+            {0,1},{1,0},{0,-1},{-1,0}
+        };
+        int xIndex = 0;
+        int yIndex = 0;
+        result.push_back(matrix[xIndex][yIndex]);
+        visit[xIndex][yIndex] = true;
+        while(result.size() != m*n){
+            for(int i=0;i<directions.size();i++){
+                while(xIndex + directions[i][0] >= 0 && xIndex + directions[i][0] < m && yIndex + directions[i][1] >= 0 && yIndex + directions[i][1] < n && visit[xIndex + directions[i][0]][yIndex + directions[i][1]] == false){
+                    xIndex = xIndex + directions[i][0];
+                    yIndex = yIndex + directions[i][1];
+                    result.push_back(matrix[xIndex][yIndex]);
+                    visit[xIndex][yIndex] = true;
+                }
             }
         }
-        return res;
+        return result;
     }
 };
 // @lc code=end
