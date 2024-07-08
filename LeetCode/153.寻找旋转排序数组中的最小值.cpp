@@ -11,9 +11,6 @@ public:
         int left = 0;
         int right = nums.size() - 1;
         while(left < right){
-            if(nums[left] < nums[right]){
-                return nums[left];
-            }
             int mid = (right - left) / 2 + left;
             if(nums[right] > nums[mid]){
                 right = mid;

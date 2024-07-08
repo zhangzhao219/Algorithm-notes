@@ -18,7 +18,7 @@
  */
 class Solution {
 public:
-    bool issame(TreeNode* left, TreeNode* right){
+    bool isSame(TreeNode* left, TreeNode* right){
         if(left == NULL && right == NULL){
             return true;
         } else if(left == NULL){
@@ -30,13 +30,13 @@ public:
                 return false;
             }
         }
-        return issame(left->right, right->left) && issame(right->right, left->left);
+        return isSame(left->left, right->right) && isSame(left->right, right->left);
     }
     bool isSymmetric(TreeNode* root) {
         if(root == NULL){
             return true;
         }
-        return issame(root->left, root->right);
+        return isSame(root->left, root->right);
     }
 };
 // @lc code=end

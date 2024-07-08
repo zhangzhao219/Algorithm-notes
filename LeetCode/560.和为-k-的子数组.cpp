@@ -8,24 +8,20 @@
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
-        int n = nums.size();
-        vector<int> pre(n+1,0);
-        for(int i=1;i<=n;i++){
-            pre[i] = nums[i-1] + pre[i-1];
+        vector<int> pre(nums.size()+1,0);
+        for(int i=1;i<=nums.size();i++){
+            pre[i] = pre[i-1] + nums[i-1];
         }
-        for(int i=0;i<=n;i++){
-            cout << pre[i] << " ";
-        }
-        cout << endl;
-        unordered_map<int, int> cnt;
-        int result = 0;
-        for(int i=0; i<=n; i++){
-            if (cnt.contains(pre[i] - k)){
-                result += cnt[pre[i] - k];
+        int ans = 0;
+        for(int i=1;i<=nums.size();i++){
+            int now = pre[i] - k;
+            for(int j=0;j<i;j++){
+                if(now == pre[j]){
+                    ans += 1;
+                }
             }
-            cnt[pre[i]] += 1;
         }
-        return result;
+        return ans;
     }
 };
 // @lc code=end

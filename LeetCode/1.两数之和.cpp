@@ -8,15 +8,16 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> result(2,0);
-        map<int,int> mp;
+        vector<int> result;
+        unordered_map<int, int> mp;
         for(int i=0;i<nums.size();i++){
-            if(mp.find(target - nums[i]) != mp.end()){
-                result[0] = mp[target - nums[i]];
-                result[1] = i;
-                break;
+            if(mp.find(target - nums[i]) == mp.end()){
+                mp[nums[i]] = i;
+                continue;
             }
-            mp[nums[i]] = i;
+            result.push_back(mp[target - nums[i]]);
+            result.push_back(i);
+            break;
         }
         return result;
     }

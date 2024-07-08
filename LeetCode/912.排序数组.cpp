@@ -7,62 +7,61 @@
 // @lc code=start
 class Solution {
 public:
-    // void quicksort(vector<int>& nums, int start, int end){
-    //     if(start >= end){
-    //         return;
-    //     }
-    //     int randomIndex = rand() % (end - start + 1) + start;
-    //     swap(nums[randomIndex], nums[start]);
-    //     int x = nums[start];
-    //     int left = start;
-    //     int right = end;
-    //     while(left < right){
-    //         while(left < right && nums[right] >= x){
-    //             right--;
-    //         }
-    //         nums[left] = nums[right];
-    //         while(left < right && nums[left] < x){
-    //             left++;
-    //         }
-    //         nums[right] = nums[left];
-    //     }
-    //     nums[left] = x;
-    //     quicksort(nums, start, left-1);
-    //     quicksort(nums, left+1, end);
-    // }
-    void mergesort(vector<int>& nums, int start, int end){
-        if(start >= end){
+    void mergesort(vector<int>& nums, int left, int right){
+        if(left >= right){
             return;
         }
-        int mid = (end - start) / 2 + start;
-        mergesort(nums, start, mid);
-        mergesort(nums, mid+1, end);
+        int mid = (right - left) / 2 + left;
+        mergesort(nums, left, mid);
+        mergesort(nums, mid + 1, right);
         vector<int> temp;
-        int left = start;
-        int right = mid+1;
-        while(left <= mid || right <= end){
-            if(right > end){
-                temp.push_back(nums[left]);
-                left += 1;
-            } else if(left > mid){
-                temp.push_back(nums[right]);
-                right += 1;
+        int l1_start = left;
+        int l2_start = mid+1;
+        int l1_end = mid;
+        int l2_end = right;
+        while(l1_start <= l1_end || l2_start <= l2_end){
+            if(l1_start > l1_end){
+                temp.push_back(nums[l2_start]);
+                l2_start += 1;
+            } else if(l2_start > l2_end){
+                temp.push_back(nums[l1_start]);
+                l1_start += 1;
             } else{
-                if(nums[left] < nums[right]){
-                    temp.push_back(nums[left]);
-                    left += 1;
+                if(nums[l1_start] < nums[l2_start]){
+                    temp.push_back(nums[l1_start]);
+                    l1_start += 1;
                 } else{
-                    temp.push_back(nums[right]);
-                    right += 1;
+                    temp.push_back(nums[l2_start]);
+                    l2_start += 1;
                 }
             }
         }
-        for(int i=start;i<=end;i++){
-            nums[i] = temp[i-start];
+        for(int i=0;i<temp.size();i++){
+            nums[left+i] = temp[i];
         }
     }
+    void quicksort(vector<int>& nums, int left, int right){
+        if(left >= right){
+            return;
+        }
+        int x = nums[left];
+        int start = left;
+        int end = right;
+        while(start < end){
+            while(start < end && nums[end] > x){
+                end--;
+            }
+            nums[start] = nums[end];
+            while(start < end && nums[start] <= x){
+                start++;
+            }
+            nums[end] = nums[start];
+        }
+        nums[start] = x;
+        quicksort(nums, left, start-1);
+        quicksort(nums, start+1, right);
+    }
     vector<int> sortArray(vector<int>& nums) {
-        // quicksort(nums, 0, nums.size()-1);
         mergesort(nums, 0, nums.size()-1);
         return nums;
     }

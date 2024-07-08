@@ -17,40 +17,41 @@
  */
 class Solution {
 public:
-    ListNode* merge(vector<ListNode*>& lists, int start, int end){
-        if(start == end){
-            return lists[start];
+    ListNode* merge(vector<ListNode*>& lists, int left, int right){
+        if(left == right){
+            return lists[left];
         }
-        int mid = (end - start) / 2 + start;
-        ListNode* left = merge(lists, start, mid);
-        ListNode* right = merge(lists, mid+1, end);
-        ListNode* dummy = new ListNode(-1);
-        ListNode* p = dummy;
-        while(left != NULL || right != NULL){
-            if(left == NULL){
-                dummy->next = right;
-                right = right->next;
-            } else if(right == NULL){
-                dummy->next = left;
-                left = left->next;
+        int mid = (right - left) / 2 + left;
+        ListNode* l1 = merge(lists, left, mid);
+        ListNode* l2 = merge(lists, mid + 1, right);
+        ListNode* l3 = new ListNode(-1);
+        ListNode* head = l3;
+        while(l1 != NULL || l2 != NULL){
+            if(l1 == NULL){
+                l3->next = l2;
+                l2 = l2->next;
+            } else if(l2 == NULL){
+                l3->next = l1;
+                l1 = l1->next;
             } else{
-                if(left->val < right -> val){
-                    dummy->next = left;
-                    left = left->next;
+                if(l1->val < l2->val){
+                    l3->next = l1;
+                    l1 = l1->next;
                 } else{
-                    dummy->next = right;
-                    right = right->next;
+                    l3->next = l2;
+                    l2 = l2->next;
                 }
             }
-            dummy = dummy->next;
+            l3 = l3->next;
         }
-        return p->next;
+        return head->next;
     }
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        if(lists.size() == 0){
+        int k = lists.size();
+        if(k == 0){
             return NULL;
         }
-        return merge(lists, 0, lists.size()-1);
+        return merge(lists, 0, k-1);
     }
 };
 // @lc code=end

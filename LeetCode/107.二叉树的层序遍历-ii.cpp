@@ -20,32 +20,32 @@ class Solution {
 public:
     vector<vector<int>> levelOrderBottom(TreeNode* root) {
         vector<vector<int> > result;
+        queue<TreeNode*> q;
         if(root == NULL){
             return result;
         }
-        queue<TreeNode*> q;
         q.push(root);
         while(!q.empty()){
-            int s = q.size();
+            int t = q.size();
             vector<int> temp;
-            for(int i=0;i<s;i++){
-                TreeNode* t = q.front();
+            for(int i=0;i<t;i++){
+                TreeNode* node = q.front();
                 q.pop();
-                temp.push_back(t->val);
-                if(t->left != NULL){
-                    q.push(t->left);
+                temp.push_back(node->val);
+                if(node->left != NULL){
+                    q.push(node->left);
                 }
-                if(t->right != NULL){
-                    q.push(t->right);
+                if(node->right != NULL){
+                    q.push(node->right);
                 }
             }
             result.push_back(temp);
         }
-        vector<vector<int> > acresult;
+        vector<vector<int> > result2;
         for(int i=result.size()-1;i>=0;i--){
-            acresult.push_back(result[i]);
+            result2.push_back(result[i]);
         }
-        return acresult;
+        return result2;
     }
 };
 // @lc code=end

@@ -8,17 +8,21 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
+        unordered_set<char> st;
         int n = s.size();
         int result = 0;
-        int right = 0;
-        unordered_set<char> st;
-        for(int left = 0;left < n;left++){
-            while(right < n && !st.count(s[right])){
+        int left = 0;
+        for(int right=0;right < s.size();right++){
+            if(st.count(s[right]) == 0){
                 st.insert(s[right]);
-                right++;
+                result = max(result, right - left + 1);
+                continue;
             }
-            result = max(result, right - left);
-            st.erase(s[left]);
+            while(left < right && st.count(s[right]) != 0){
+                st.erase(s[left]);
+                left++;
+            }
+            st.insert(s[right]);
         }
         return result;
     }
