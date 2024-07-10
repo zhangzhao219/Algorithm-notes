@@ -1,35 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void mergesort(vector<int>& nums, int start, int end){
+void mergesort(vector<int> & nums, int start, int end){
     if(start >= end){
         return;
     }
     int mid = (end - start) / 2 + start;
     mergesort(nums, start, mid);
-    mergesort(nums, mid + 1, end);
+    mergesort(nums, mid+1, end);
     vector<int> temp;
-    int l1 = start;
-    int l2 = mid + 1;
-    while(l1 <= mid || l2 <= end){
-        if(l2 > end){
-            temp.push_back(nums[l1]);
-            l1++;
-        } else if (l1 > mid){
-            temp.push_back(nums[l2]);
-            l2++;
+    int l1start = start;
+    int l1end = mid;
+    int l2start = mid + 1;
+    int l2end = end;
+    while(l1start <= l1end || l2start <= l2end){
+        if(l1start > l1end){
+            temp.push_back(nums[l2start]);
+            l2start += 1;
+        } else if(l2start > l2end){
+            temp.push_back(nums[l1start]);
+            l1start += 1;
         } else{
-            if(nums[l1] < nums[l2]){
-                temp.push_back(nums[l1]);
-                l1++;
+            if(nums[l1start] < nums[l2start]){
+                temp.push_back(nums[l1start]);
+                l1start += 1;
             } else{
-                temp.push_back(nums[l2]);
-                l2++;
+                temp.push_back(nums[l2start]);
+                l2start += 1;
             }
         }
     }
-    for(int i=start;i<=end;i++){
-        nums[i] = temp[i-start];
+    for(int i=0;i<temp.size();i++){
+        nums[start+i] = temp[i];
     }
 }
 
