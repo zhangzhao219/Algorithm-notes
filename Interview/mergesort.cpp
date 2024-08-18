@@ -7,31 +7,31 @@ void mergesort(vector<int> & nums, int start, int end){
     }
     int mid = (end - start) / 2 + start;
     mergesort(nums, start, mid);
-    mergesort(nums, mid+1, end);
+    mergesort(nums, mid + 1, end);
     vector<int> temp;
-    int l1start = start;
-    int l1end = mid;
-    int l2start = mid + 1;
-    int l2end = end;
-    while(l1start <= l1end || l2start <= l2end){
-        if(l1start > l1end){
-            temp.push_back(nums[l2start]);
-            l2start += 1;
-        } else if(l2start > l2end){
-            temp.push_back(nums[l1start]);
-            l1start += 1;
+    int l1_start = start;
+    int l1_end = mid;
+    int l2_start = mid + 1;
+    int l2_end = end;
+    while(l1_start <= l1_end || l2_start <= l2_end){
+        if(l1_start > l1_end){
+            temp.push_back(nums[l2_start]);
+            l2_start += 1;
+        } else if(l2_start > l2_end){
+            temp.push_back(nums[l1_start]);
+            l1_start += 1;
         } else{
-            if(nums[l1start] < nums[l2start]){
-                temp.push_back(nums[l1start]);
-                l1start += 1;
+            if(nums[l1_start] < nums[l2_start]){
+                temp.push_back(nums[l1_start]);
+                l1_start += 1;
             } else{
-                temp.push_back(nums[l2start]);
-                l2start += 1;
+                temp.push_back(nums[l2_start]);
+                l2_start += 1;
             }
         }
     }
-    for(int i=0;i<temp.size();i++){
-        nums[start+i] = temp[i];
+    for(int i=start;i<=end;i++){
+        nums[i] = temp[i - start];
     }
 }
 

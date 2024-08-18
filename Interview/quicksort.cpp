@@ -1,26 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void quicksort(vector<int> &nums, int start, int end){
-    if(start >= end){
+void quicksort(vector<int> &nums, int left, int right){
+    if(left >= right){
         return;
     }
-    int x = nums[start];
-    int left = start;
-    int right = end;
-    while(left < right){
-        while(left < right && nums[right] >= x){
-            right--;
+    int x = nums[left];
+    int start = left;
+    int end = right;
+    while(start < end){
+        while(start < end && nums[end] >= x){
+            end--;
         }
-        nums[left] = nums[right];
-        while(left < right && nums[left] < x){
-            left++;
+        nums[start] = nums[end];
+        while(start < end && nums[start] < x){
+            start++;
         }
-        nums[right] = nums[left];
+        nums[end] = nums[start];
     }
-    nums[left] = x;
-    quicksort(nums, start, left-1);
-    quicksort(nums, left+1, end);
+    nums[start] = x;
+    quicksort(nums, left, start - 1);
+    quicksort(nums, start + 1, right);
 }
 
 int main()
