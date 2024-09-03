@@ -1,39 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void quicksort(vector<int> &nums, int left, int right){
-    if(left >= right){
+
+void quicksort(vector<int> & nums, int start, int end){
+    if(start >= end){
         return;
     }
-    int x = nums[left];
-    int start = left;
-    int end = right;
-    while(start < end){
-        while(start < end && nums[end] >= x){
-            end--;
+    int left = start;
+    int right = end;
+    int x = nums[start];
+    while(left < right){
+        while(left < right && nums[right] >= x){
+            right--;
         }
-        nums[start] = nums[end];
-        while(start < end && nums[start] < x){
-            start++;
+        nums[left] = nums[right];
+        while(left < right && nums[left] < x){
+            left++;
         }
-        nums[end] = nums[start];
+        nums[right] = nums[left];
     }
-    nums[start] = x;
-    quicksort(nums, left, start - 1);
-    quicksort(nums, start + 1, right);
+    nums[left] = x;
+    quicksort(nums, start, left-1);
+    quicksort(nums, left+1, end);
 }
 
-int main()
-{
-    vector<int> nums = {1, 2, 5, 4, 7, 8, 4, 5, 6, 3, 2, 5, 6, 9, 8, 5, 6, 4, 1, 2, 3, 5, 4, 1, 2, 5, 6, 3, 2};
-    for (int i = 0; i < nums.size(); i++)
-    {
+
+int main(){
+    vector<int> nums = {1,2,5,4,7,8,9,6,5,2,3,4,5,2,1,2,3,5};
+    for(int i=0;i<nums.size();i++){
         cout << nums[i] << " ";
     }
     cout << endl;
-    quicksort(nums, 0, nums.size() - 1);
-    for (int i = 0; i < nums.size(); i++)
-    {
+    quicksort(nums, 0, nums.size()-1);
+    for(int i=0;i<nums.size();i++){
         cout << nums[i] << " ";
     }
     cout << endl;
